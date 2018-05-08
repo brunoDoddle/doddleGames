@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>StrasWar editor</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="StrasWar">
+    <!--        <link rel="stylesheet" href="css/pageModel.css">-->
+    <link rel="stylesheet" href="css/editor.css">
+    <link rel="icon" href="favicon.ico">
+</head>
+
+<body id="body">
+    <header class="header">
+        <section class="header_content">
+            <span>
+                    <span class="header_icon">
+                        <img id="backButton" src="svg/back.svg" class="header_icon"/>
+                        <img id="offButton" src="svg/off.svg" class="header_icon"/>
+                    </span>
+            <span id="header_title"></span>
+            </span>
+            <span id="header_button">
+                    <img id="wait" src="svg/wait.svg" class="header_icon"/>
+                </span>
+        </section>
+    </header>
+    <div id="errors"></div>
+
+    <!-- La bibliotheque google maps, à charger par script pas dans la page...-->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry&sensor=false&libraries=geometry&key=AIzaSyCDWJmD9IWGNBJcTP5AMhyErHEcPOYW2OU"></script>
+    <script type="text/javascript" src="js/fetch.js"></script>
+    <!-- Mon loader pour sprite-->
+    <script type="text/javascript" src="js/tools.js"></script>
+    <!-- pleins de scripts -->
+    <script type="text/javascript" src="js/pageModel.js"></script>
+    <!-- mon modèle de page -->
+    <script type="text/javascript" src="js/main.editor.js"></script>
+
+    <section id="container">
+        <div id="loading"></div>
+        <aside id="page">
+            menu
+        </aside>
+        <div id="map-canvas"></div>
+        <script type="text/javascript">
+            DODDLE.editor.load(); // Le script est en dernier donc les étapes précédentes ont bien été chargé
+
+        </script>
+    </section>
+</body>
+
+</html>

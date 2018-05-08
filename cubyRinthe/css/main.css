@@ -1,0 +1,65 @@
+@font-face {
+    font-family: myFont;
+    src: url('/fonts/Minercraftory.ttf');
+}
+
+.blocking {
+    z-index: 10000;
+    position: relative;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #cc9cd8;
+}
+
+.blocking > div {
+    font-size: 2em;
+    color: #a32a87;
+    margin: 20px;
+}
+
+.allSurface {
+    width: 100vw;
+    height: 100vh;
+}
+
+.abs {
+    position: absolute;
+    width: 100%;
+}
+
+#ctrl {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    bottom: 0px;
+    left: 0px;
+    z-index: 9999;
+    visibility: hidden;
+}
+
+#ctrl > div {
+    align-self: flex-end;
+}
+
+.ctrlButton {
+    display: block;
+    background-color: rgba(0, 255, 206, 0.62);
+    width: 3.5em;
+    height: 3.5em;
+    border-radius: 10px;
+    color: black;
+    margin: 5px;
+    text-align: center;
+}
+
+body {
+    font-family: myFont;
+    width: 100vw;
+    height: 100vh;
+}
+
+#canvas_container {
+    width: 100%;
+    height: 100%;
+}

@@ -1,0 +1,16 @@
+{
+    "name": "Meteorid Prime",
+    "short_name": "Meteor-P",
+    "icons": [
+        {
+            "src": "/meteroidPrime/ressources/logo.png",
+            "sizes": "144x144",
+            "type": "image/png"
+    }
+  ],
+    "start_url": "/meteroidPrime/",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#000000",
+    "theme_color": "#272727"
+}

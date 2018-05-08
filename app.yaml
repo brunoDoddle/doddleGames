@@ -1,0 +1,192 @@
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+#############################################################"
+#############################################################"
+## Cubyrinthe
+#############################################################"
+#############################################################"
+- url: /cubyRinthe/favicon\.ico
+  static_files: cubyRinthe/favicon.ico
+  upload: /cubyRinthe/favicon\.ico
+
+- url: /cubyRinthe/sw-cuby\.js
+  static_files: cubyRinthe/sw-cuby.js
+  upload: cubyRinthe/sw-cuby\.js
+
+- url: /cubyRinthe/commonJS
+  static_dir: js
+
+- url: /cubyRinthe/json
+  static_dir: cubyRinthe/json
+
+- url: /cubyRinthe/js
+  static_dir: cubyRinthe/js
+
+- url: /cubyRinthe/uranium
+  static_dir: cubyRinthe/js
+
+- url: /cubyRinthe/dist
+  static_dir: cubyRinthe/dist
+
+- url: /cubyRinthe/css
+  static_dir: cubyRinthe/css
+
+- url: /cubyRinthe/ressources
+  static_dir: cubyRinthe/ressources
+
+- url: /cubyRinthe/.*
+  script: cubyRinthe.app
+
+#############################################################"
+#############################################################"
+## Meteroid Prime
+#############################################################"
+#############################################################"
+- url: /meteroidPrime/favicon\.ico
+  static_files: meteroidPrime/favicon.ico
+  upload: /meteroidPrime/favicon\.ico
+
+- url: /meteroidPrime/sw-meteor\.js
+  static_files: meteroidPrime/sw-meteor.js
+  upload: meteroidPrime/sw-meteor\.js
+
+- url: /meteroidPrime/commonJS
+  static_dir: js
+
+- url: /meteroidPrime/json
+  static_dir: meteroidPrime/json
+
+- url: /meteroidPrime/js
+  static_dir: meteroidPrime/js
+
+- url: /meteroidPrime/css
+  static_dir: meteroidPrime/css
+
+- url: /meteroidPrime/ressources
+  static_dir: meteroidPrime/ressources
+
+- url: /meteroidPrime/.*
+  script: meteroidPrime.app
+
+#############################################################"
+#############################################################"
+## STRASWAR
+#############################################################"
+#############################################################"
+
+- url: /strasWar/favicon\.ico
+  static_files: strasWar/favicon.ico
+  upload: /strasWar/favicon\.ico
+
+- url: /strasWar/sw-straswar\.js
+  static_files: strasWar/sw-straswar.js
+  upload: strasWar/sw-straswar\.js
+
+- url: /strasWar/commonJS
+  static_dir: js
+
+# Page d'aide static (y'en aura t-il beaucoup ??)
+- url: /strasWar/html
+  static_dir: strasWar/html
+
+- url: /strasWar/js
+  static_dir: strasWar/js
+
+- url: /strasWar/css
+  static_dir: strasWar/css
+
+- url: /strasWar/png
+  static_dir: strasWar/png
+
+- url: /strasWar/svg
+  static_dir: strasWar/svg
+
+- url: /strasWar/json
+  static_dir: strasWar/json
+
+- url: /strasWar/.*
+  script: strasWar.app
+
+#############################################################"
+#############################################################"
+## ONE IN WALL
+#############################################################"
+#############################################################"
+- url: /oneInWall/js
+  static_dir: oneInWall/js
+
+- url: /oneInWall/commonJS
+  static_dir: js
+
+- url: /oneInWall/css
+  static_dir: oneInWall/css
+
+- url: /oneInWall/png
+  static_dir: oneInWall/png
+
+- url: /oneInWall/svg
+  static_dir: oneInWall/svg
+
+- url: /oneInWall/levels
+  static_dir: oneInWall/levels
+
+- url: /oneInWall/json
+  static_dir: oneInWall/json
+
+- url: /oneInWall/sw\.js
+  static_files: oneInWall/sw.js
+  upload: oneInWall/sw\.js
+
+- url: /oneInWall/favicon\.ico
+  static_files: oneInWall/favicon.ico
+  upload: /oneInWall/favicon\.ico
+
+- url: /oneInWall/.*
+  script: oneInWall.app
+
+#############################################################"
+#############################################################"
+## Les MAINS
+#############################################################"
+#############################################################"
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+
+- url: /css
+  static_dir: css
+
+- url: /png
+  static_dir: png
+
+- url: /fonts
+  static_dir: fonts
+
+#  la page par defaut TOUJOURS EN DERNIER !!!!!!!!!!!!!!
+- url: .*
+  script: main.app
+
+#############################################################"
+#############################################################"
+##Le reste de la configuration
+#############################################################"
+#############################################################"
+
+# Les fichiers a ne pas uploader (fichier de travail du projet)
+skip_files:
+- /docs/.*
+- /strasWar/docs/.*
+- /oneInWall/docs/.*
+- /strasWar/.*~
+- /oneInWall/.*~
+
+# Les differentes version de librairies utilisees.
+libraries:
+- name: jinja2
+  version: latest
+
+- name: webapp2
+  version: "2.5.1"

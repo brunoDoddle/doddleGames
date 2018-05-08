@@ -1,0 +1,83 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="StrasWar">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="json/manifest.json">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script type="text/javascript" src="commonJS/common.js"></script>
+    <script type="text/javascript" src="js/file.js"></script>
+    <script type="text/javascript" src="commonJS/noSleep.js"></script>
+    <script type="text/javascript" src="commonJS/zepto.min.js"></script>
+    <script type="text/javascript" src="js/particles.js"></script>
+    <script type="text/javascript" src="js/Sprite.js"></script>
+    <script type="text/javascript" src="js/myLoader.js"></script>
+    <script type="text/javascript" src="js/jsxcompressor.min.js"></script>
+    <script type="text/javascript" src="js/myTMXDecodeur.js"></script>
+    <script type="text/javascript" src="js/gamePercent.js"></script>
+    <script type="text/javascript" src="js/gameTime.js"></script>
+    <script type="text/javascript" src="js/gameObjects.js"></script>
+    <script type="text/javascript" src="js/messages.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/function.js"></script>
+    <script type="text/javascript" src="js/drawGridMap2.js"></script>
+    <title>WallInOne</title>
+</head>
+
+<body>
+    <!-- Loader, utile au finale....-->
+    <div id="loader">
+        <loading class="load">LOADING</loading>
+    </div>
+    <div id="game">
+        <div id="blocking"></div>
+        <!--            Affichage score haut -->
+        <div id="percent" class="c vcOut hc1">
+            <span id="pBox">
+                <span id="percentBox">
+                    <div id="percentBar" class="percentBar"></div>
+                </span>
+            <span id="percentText">0%</span>
+            </span>
+            <span id="oBox">
+                4/4
+            </span>
+        </div>
+        <!--            Affiche score bas-->
+        <div id="time" class="c vcOut hc95"></div>
+        <!--Objet de base n'ayant pas besoin de loading-->
+        <div id="msg0" class="c vcOut hc60 greatPolice"></div>
+        <div id="msg1" class="c vcOut hc70 greatPolice"></div>
+        <div id="msg2" class="c vcOut hc80 greatPolice"></div>
+        <!--la selection du niveau-->
+        <div id="selectWorld" class="selectWorld c vcOut hc5">
+            <section class="title">
+                <span></span>
+                <span>BACK</span>
+            </section>
+            <article></article>
+        </div>
+        <div id="selectLevel" class="selectWorld c vcOut hc5">
+            <section class="title">
+                <span></span>
+                <span>BACK</span>
+            </section>
+            <article></article>
+        </div>
+        <!--la fin de partie-->
+        <div id="endGame" class="endGame c vcOut hc5" onClick="DODDLE.game.whatsNext();">
+            <article>
+                <div class="win"><img src="png/win.png" class="large" /></div>
+                <div class="loose"><img src="png/loose.png" class="large" /></div>
+            </article>
+        </div>
+        <!--       Mighty message ici-->
+        <div id="bigMsg" class="c vcOut hc50 greatGreatPolice"></div>
+        <!--        Ici seront insérés les objets dont il faut loader le graph-->
+        <canvas id="canvas">></canvas>
+    </div>
+</body>
+
+</html>

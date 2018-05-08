@@ -1,0 +1,56 @@
+@font-face {
+    font-family: 'PressStart2P';
+    src: url('/fonts/PressStart2P.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html {
+    font-family: 'PressStart2P', sans-serif;
+    font-size: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.header {
+    height: 40px;
+    background-color: yellow;
+}
+
+#container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+
+#page {
+    width: 30%;
+    background-color: red;
+    height: 100%;
+}
+
+#map-canvas {
+    width: 100%;
+    height: 100%;
+    background-color: green;
+}
+
+ul {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+li {
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: row;
+}

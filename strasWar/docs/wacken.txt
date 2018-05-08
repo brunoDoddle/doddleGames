@@ -1,0 +1,56 @@
+Wacken
+[{"lat":48.600473387482644,"lng":7.755398154258728},{"lat":48.600899088094465,"lng":7.755167484283447},{"lat":48.60144539862316,"lng":7.7555859088897705},{"lat":48.601913660087774,"lng":7.756390571594238},{"lat":48.602161978799984,"lng":7.757077217102051},{"lat":48.60199170324317,"lng":7.758375406265259},{"lat":48.60029955870121,"lng":7.757581472396851},{"lat":48.600537242803156,"lng":7.756524682044983}]
+
+Schutz
+[{"lat":48.60298851657596,"lng":7.753922939300537},{"lat":48.60299915860505,"lng":7.754293084144592},{"lat":48.60275084400872,"lng":7.755441069602966},{"lat":48.60262668625274,"lng":7.756170630455017},{"lat":48.60135316479264,"lng":7.754534482955933},{"lat":48.60169726707168,"lng":7.754480838775635},{"lat":48.602357085503144,"lng":7.754185795783997}]
+
+Entre Deux
+[{"lat":48.60126802572265,"lng":7.754384279251099},{"lat":48.60314814677688,"lng":7.756862640380859},{"lat":48.602481243921844,"lng":7.758074998855591},{"pos":{"lat":48.60227549551896,"lng":7.75634765625},{"lat":48.60114031684862,"lng":7.7547383308410645}]
+
+schutz
+48.60291851657596
+7.754052939300537
+	
+wacken
+48.601
+7.756
+
+Entre deux
+48.6021
+7.756
+7.7552
+
+
+constantes:
+joueurs:
+    joueur:
+        nom:
+        clan:
+        couleur:
+soldats:
+    soldat:
+        joueur:
+        modele:
+
+variables:
+combats:
+    combats
+
+
+
+https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i17!2i68359!3i45232!4i256!2m3!1e0!2sm!3i380071136!3m14!2sfr-FR!3sUS!5e18!12m1!1e68!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy5lOmx8cC52Om9mZixzLnQ6MXxzLmU6bHxwLnY6b24scy50OjE3fHAudjpvZmYscy50OjE4fHAudjpvZmYscy50OjE5fHAudjpvbixzLnQ6MTl8cy5lOmwudHxwLnY6b2ZmLHMudDoxOXxzLmU6bC50LmZ8cC5jOiNmZjc5YTQ3ZXxwLmw6LTE0fHAudjpzaW1wbGlmaWVkLHMudDoyMHxwLnY6b2ZmLHMudDo1fHAuYzojZmZiZWRlYWYscy50OjEzMTR8cC5jOiNmZjk5Y2E5ZSxzLnQ6MnxwLnY6b24scy50OjJ8cy5lOmd8cC52OnNpbXBsaWZpZWQscy50OjJ8cy5lOmx8cC52Om9mZixzLnQ6MnxzLmU6bC50fHAudjpvZmYscy50OjJ8cy5lOmwudC5mfHAuYzojZmY2NzdjNjkscy50OjJ8cy5lOmwuaXxwLnY6b2ZmfHAuaDojMDBmZjgyfHAuczo2LHMudDozN3xwLnY6b2ZmLHMudDozM3xwLnY6b2ZmLHMudDozNHxwLnY6b2ZmLHMudDozNnxwLnY6b2ZmLHMudDo0MHxwLmM6I2ZmOTljYTllfHAudjpvbixzLnQ6NDB8cy5lOmx8cC52Om9ufHAuYzojZmY5OWNhOWV8cC5nOjEwLjAwLHMudDo0MHxzLmU6bC50fHAudjpvZmYscy50OjQwfHMuZTpsLnQuc3xwLnc6M3xwLmM6I2ZmOTljYTllLHMudDozOHxwLnY6b2ZmLHMudDozNXxwLnY6b2ZmLHMudDozOXxwLnY6b2ZmLHMudDozfHAudjpzaW1wbGlmaWVkfHAuYzojZmY5OWNhOWV8cC5sOjY4fHAuZzoxLjAwLHMudDozfHMuZTpsfHAudjpvZmYscy50Ojc4NXxwLnY6b2ZmLHMudDo1MXxwLmM6I2ZmOTljYTllLHMudDo0fHAudjpvbixzLnQ6NHxzLmU6bC50LmZ8cC5jOiNmZjc1YWE3YixzLnQ6NHxzLmU6bC5pfHAuaDojNDFmZjAwfHAuczotODAscy50OjY1fHAudjpzaW1wbGlmaWVkfHAuYzojZmY5OWNhOWV8cC53OjAuNSxzLnQ6MTA1OXxwLnY6b258cC5jOiNmZjk5Y2E5ZSxzLnQ6MTA1OXxzLmU6bHxwLnY6b2ZmLHMudDoxMDU4fHAudjpzaW1wbGlmaWVkLHMudDoxMDU4fHMuZTpsLml8cC52Om9mZixzLnQ6MTA1N3xwLnY6c2ltcGxpZmllZCxzLnQ6MTA1N3xzLmU6bC5pfHAudjpvZmYscy50OjZ8cC5jOiNmZmRiZjRmNQ!4e0!5m1!5f2&token=94617
+
+Affectation par ordre d'arrivée
+groupe de 4 max
+
+3PV par perso
+ARCHER 1PV par tir / max 2 TIR
+ARCHER ne fait pas gagner un combat
+
+1 1E3 |
+2 1C3 | 1C2 | 
+3 1P3       | 1P2
+
+SI groupe se vide (<4) et que combatants attendent ajout au groupe (ordre d'arrivée)
+
+

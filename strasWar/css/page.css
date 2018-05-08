@@ -1,0 +1,186 @@
+/*
+https://webdesign.tutsplus.com/articles/quick-tip-easy-css3-checkboxes-and-radio-buttons--webdesign-8953
+*/
+
+/*======================== Page Map ========================*/
+
+#map-canvas {
+    width: 100%;
+    height: 69vh;
+}
+
+#map-canvas-short {
+    width: 100%;
+    height: 60vh;
+}
+
+#map-canvas-all {
+    width: 100%;
+    height: 100%;
+}
+
+.help {
+    text-align: left;
+    color: black;
+}
+
+.help > h1 {
+    color: firebrick;
+}
+
+.help > h2 {
+    color: darkred;
+}
+
+.help > p {
+    text-align: left;
+}
+
+ul.help {
+    list-style-type: none;
+    text-align: left;
+    color: #141d65;
+}
+
+ul.help > li {
+    text-align: left;
+    color: #141d65;
+}
+
+/* Les petits picto qui représente le nombre d'armée restant à poser*/
+
+.army {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url('../png/army.png');
+    background-size: 20px;
+    background-repeat: no-repeat;
+}
+
+.ctrl {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 80px;
+    width: 95%;
+    margin: auto;
+}
+
+.p85 {
+    width: 85%;
+}
+
+.centered {
+    width: 15%;
+    height: 100%;
+    display: flex;
+}
+
+.margin {
+    display: inline-block;
+    width: 100%;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.centered > div {
+    margin: auto;
+}
+
+.roi {
+    width: 100%;
+    height: auto;
+    image-rendering: pixelated;
+}
+
+.ctrlUnites > input {
+    visibility: hidden;
+    /* Makes input not-clickable */
+    position: absolute;
+    /* Remove input from document flow */
+}
+
+.ctrlUnites > input + img {
+    /* IMAGE STYLES */
+    cursor: pointer;
+    border: 2px solid transparent;
+    padding: 0px;
+    margin: 0px;
+}
+
+.ctrlUnites > input:checked + img {
+    /* (RADIO CHECKED) IMAGE STYLES */
+    border: 2px solid #f00;
+}
+
+#nbUnites {
+    font-family: 'OpenSans', sans-serif;
+    font-size: 2em;
+}
+
+#ctrl {
+    display: inline-block;
+    width: 100%;
+    height: 25vh;
+}
+
+.fontMap {
+    font-family: 'OpenSans', sans-serif;
+    font-size: 1.5em;
+    color: black;
+    line-height: 1.5em;
+    padding-bottom: 10px;
+}
+
+.labels {
+    font-family: 'OpenSans', sans-serif;
+    font-size: 1.3em;
+    color: black;
+    line-height: 1.5em;
+}
+
+.warningMessage {
+    font-size: 2em;
+    line-height: 1.5em;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, .8);
+}
+
+.popUpContainer {
+    width: 100%;
+    height: 90%;
+    font-size: 1.5em;
+    line-height: 1em;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, .8);
+    overflow: scroll;
+}
+
+.popUpBoutonBloc {
+    display: flex;
+    flex-direction: row;
+    height: 10%;
+    width: 100%;
+}
+
+.centPourcent {
+    width: 100%;
+    padding: 2px;
+    height: 100%;
+}
+
+.cinqantePourcent {
+    width: 50%;
+    padding: 2px;
+    height: 100%;
+}
+
+.userList > ul {
+    color: #baadff;
+}
+
+.pictoGrand {
+    width: 100%;
+    height: auto;
+}

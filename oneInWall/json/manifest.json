@@ -1,0 +1,16 @@
+{
+    "name": "One in Wall",
+    "short_name": "OneInWall",
+    "icons": [
+        {
+            "src": "/oneInWall/png/world144.png",
+            "sizes": "144x144",
+            "type": "image/png"
+    }
+  ],
+    "start_url": "/oneInWall/",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#cc6666",
+    "theme_color": "#9e2f2f"
+}

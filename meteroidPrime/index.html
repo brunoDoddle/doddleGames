@@ -1,0 +1,216 @@
+<html lang="fr">
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type"/>
+    <title>Meteroid Prime</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="description" content="StrasWar"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="theme-color" content="#A03030"/>
+    <link rel="manifest" href="json/manifest.json"/>
+    <link rel="stylesheet" href="css/main.css"/>
+</head>
+
+<body>
+    <script type="text/javascript" src="commonJS/zepto.min.js"></script>
+    <script type="text/javascript" src="commonJS/myLoader.js"></script>
+    <script type="text/javascript" src="commonJS/common.js"></script>
+    <script type="text/javascript" src="commonJS/noSleep.js"></script>
+    <script type="text/javascript" src="js/ClassCookies.js"></script>
+    <script type="text/javascript" src="js/ClassStore.js"></script>
+    <script type="text/javascript" src="js/ClassFetch.js"></script>
+    <script type="text/javascript" src="js/ClassRange.js"></script>
+    <script type="text/javascript" src="js/ClassBoum.js"></script>
+    <script type="text/javascript" src="js/ClassJoueur.js"></script>
+    <script type="text/javascript" src="js/ClassFond.js"></script>
+    <script type="text/javascript" src="js/ClassAppli.js"></script>
+    <script type="text/javascript" src="js/ClassMeteor.js"></script>
+    <script type="text/javascript" src="js/ClassParticles.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <!--Zone de recouvrement anti click ou pour cacher construction ou loading -->
+    <div id="block" class="abs allSurface blocking">
+        <div>...Wait...</div>
+    </div>
+    <!--#####################################################-->
+    <!--#####################################################-->
+    <!--FLying zones-->
+    <!--#####################################################-->
+    <!--Ce sont toutes les zones qui vont se chevaucher-->
+    <!--#####################################################-->
+    <!--Le menu du jeux-->
+    <!--#####################################################-->
+    <section id="menu" class="abs c w80">
+        <header id="title"><img src="ressources/test.png" class="expend" /></header>
+        <!--#################################################-->
+        <!--Mini chevauchement-->
+        <!--#################################################-->
+        <!-- L'idée est de préfixé l'id par celui du pargraphe-->
+        <section id="play" class="abs c flex">
+            <span class="subTitle">Your welcome</span>
+            <div id="play_playerName">UNKNOW</div>
+            <span class="subTitle">Want to,</span>
+            <div id="play_playGame">Play</div>
+            <div id="play_web">Web Level</div>
+            <div id="play_GenerateLevel">Generate Level</div>
+            <!-- TODO: a faire....
+<div id="play_hallOfFame">Hall of Fame</div>
+<div id="play_quit">Quit?</div>-->
+        </section>
+        <section id="name" class="abs c cOut flex">
+            <div>Enter Player Name</div>
+            <input type="text" placeholder="Name" maxlength="10" size="10" id="name_playerName" />
+            <div class="buttons">
+                <div class="button validate" id="Name_Validate">Validate</div>
+                <div class="button cancel" id="Name_Cancel">Cancel</div>
+            </div>
+        </section>
+    </section>
+    <!--#####################################################-->
+    <!--La création de niveau-->
+    <!--#####################################################-->
+    <section id="generateLevel" class="abs c cOut flex">
+        <fieldset class="w80 field">
+            <legend>Custom level</legend>
+            <div class="flexH">
+                <span>Length</span>
+                <input type="range" id="generateLevel_sectorSize" value="30" max="120" min="30" step="30"/>
+            </div>
+            <div class="flexH">
+                <span>Meteors</span>
+                <input type="range" id="generateLevel_meteorPerRow" value="2" max="8" min="1" step="1"/>
+            </div>
+            <div class="flexH">
+                <span>Smaller</span>
+                <input type="range" id="generateLevel_typeOf_nullMeteor" value="100" max="100" min="0" step="10"/>
+            </div>
+            <div class="flexH">
+                <span>Little</span>
+                <input type="range" id="generateLevel_typeOf_littleMeteor" value="100" max="100" min="0" step="10"/>
+            </div>
+            <div class="flexH">
+                <span>Medium</span>
+                <input type="range" id="generateLevel_typeOf_smallMeteor" value="100" max="100" min="0" step="10"/>
+            </div>
+            <div class="flexH">
+                <span>Normal</span>
+                <input type="range" id="generateLevel_typeOf_mediumMeteor" value="100" max="100" min="0" step="10"/>
+            </div>
+            <div class="flexH">
+                <span>Big</span>
+                <input type="range" id="generateLevel_typeOf_bigMeteor" value="100" max="100" min="0" step="10"/>
+            </div>
+            <div class="flexH">
+                <span>Coin</span>
+                <input type="range" id="generateLevel_typeOf_money" value="50" max="100" min="0" step="10"/>
+            </div>
+            <div class="flexH">
+                <span>Energy</span>
+                <input type="range" id="generateLevel_typeOf_energy" value="20" max="100" min="0" step="10"/>
+            </div>
+        </fieldset>
+        <div class="buttons">
+            <div class="button validate" id="generateLevel_validate">Validate</div>
+            <div class="button cancel" id="generateLevel_cancel">Cancel</div>
+        </div>
+    </section>
+    <!--#####################################################-->
+    <!--La selection de niveau stored-->
+    <!--#####################################################-->
+    <section id="selectLevel" class="abs c cOut w80">
+        <section id="petitLogo"><img id="choose" src="ressources/choose.png" class="expend" /></section>
+        <section id="listLevel" class="abs c flex">
+            <ul id="readLevel" class="level flex space">
+
+            </ul>
+            <div class="buttons">
+                <div class="button cancel" id="selectLevel_cancel">Cancel</div>
+            </div>
+        </section>
+        <section id="nameLevel" class="abs c cOut flex space">
+            <div>Enter Level Name</div>
+            <input type="text" placeholder="Name" maxlength="10" size="10" id="level_levelName" />
+            <div class="buttons">
+                <div class="button validate" id="level_Validate">Validate</div>
+                <div class="button cancel" id="level_Cancel">Cancel</div>
+            </div>
+        </section>
+    </section>
+    <!--#####################################################-->
+    <!--La selection de niveau sur le web-->
+    <!--#####################################################-->
+    <section id="selectWeb" class="abs c cOut w80">
+        <section class="abs c flex">
+            <section id="petitLogo"><img id="choose" src="ressources/chooseWeb.png" class="expend" /></section>
+            <ul id="readWeb" class="level flex space">
+
+            </ul>
+            <div class="buttons">
+                <div class="button cancel" id="selectWeb_cancel">Cancel</div>
+            </div>
+        </section>
+    </section>
+    <!--#####################################################-->
+    <!--Le jeux en lui même-->
+    <!--#####################################################-->
+    <section id="game" class="abs c cOut w80">
+        <section id="score">
+            <div id="energy"></div>
+            <div>
+                <img src="ressources/coin.png" class="picto" />
+                <span id="money"></span>
+            </div>
+        </section>
+    </section>
+    <!--#####################################################-->
+    <!--Fin du jeux, on fait quoi ??-->
+    <!--#####################################################-->
+    <section id="endGame" class="abs c cOut w80">
+        <section id="logo" class="flex"><img id="win" src="ressources/win.png" class="expend" /><img id="loose" src="ressources/loose.png" class="expend" /></section>
+        <section id="endGame_actions" class="abs c flex">
+            <section id="TryCanGame" class="c flex space">
+                <div id="retryGame">RETRY</div>
+                <div id="storeGame">SAVE</div>
+                <div id="cancelGame">CANCEL</div>
+            </section>
+            <section id="store" class="abs c cOut flex">
+                <ul id="storeLevel" class="level flex space">
+
+                </ul>
+                <div class="buttons">
+                    <div class="button cancel" id="store_Cancel">Cancel</div>
+                </div>
+            </section>
+            <section id="hof_container" class="abs c cOut flex space">
+                <ul id="hofList" class="level flex space">
+                    <li>vide</li>
+                </ul>
+                <div class="buttons">
+                    <div class="button validate" id="hof_Ok">Ok</div>
+                </div>
+            </section>
+        </section>
+
+    </section>
+    <!--#####################################################-->
+    <!--Hall of fame-->
+    <!--#####################################################-->
+    <section id="hallOfFame" class="abs c cOut  w80">
+        <section id="logo" class="flex"><img id="win" src="ressources/win.png" class="expend" /><img id="loose" src="ressources/loose.png" class="expend" /></section>
+
+    </section>
+    <!--#####################################################-->
+    <!--le numéro de version-->
+    <!--#####################################################-->
+    <section id="version"></section>
+    <!--#####################################################-->
+    <!--#####################################################-->
+    <!--Not Flying zone (putain de commentaire)-->
+    <!--#####################################################-->
+    <!--#####################################################-->
+    <section id="main" class="allSurface">
+        <canvas id="canvas" />
+    </section>
+    <!--#####################################################-->
+</body>
+
+</html>

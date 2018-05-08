@@ -1,0 +1,16 @@
+{
+    "name": "Cubyrinthe",
+    "short_name": "cubyRinthe",
+    "icons": [
+        {
+            "src": "/cubyRinthe/ressources/logo.png",
+            "sizes": "144x144",
+            "type": "image/png"
+    }
+  ],
+    "start_url": "/cubyRinthe/",
+    "display": "standalone",
+    "orientation": "landscape",
+    "background_color": "#ffffff",
+    "theme_color": "#8d3e9b"
+}

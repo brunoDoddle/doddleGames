@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>StrasWar</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="StrasWar">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="json/manifest.json">
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="css/pageModel.css">
+    <link rel="stylesheet" href="css/page.css">
+    <!-- Finalement on utilise zepto aussi -->
+    <script type="text/javascript" src="commonJS/zepto.min.js"></script>
+    <!-- les scripts googleMaps -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry&sensor=false&key=AIzaSyCJxYT1lzaXJ6J1aCU52-r2-8ZSxcq-9SA"></script>
+    <!-- les scripts communs -->
+    <script type="text/javascript" src="commonJS/common.js"></script>
+    <!-- et aussi sha -->
+    <script type="text/javascript" src="commonJS/sha.min.js"></script>
+    <!-- et aussi le noSleep -->
+    <script type="text/javascript" src="commonJS/noSleep.js"></script>
+    <!-- spécial markerWizDesLabels -->
+    <script type="text/javascript" src="js/markerWithLabel.js"></script>
+    <!-- Mon loader-->
+    <script type="text/javascript" src="js/fetch.js"></script>
+    <!-- pleins de scripts -->
+    <script type="text/javascript" src="js/tools.js"></script>
+    <!-- classe d'animation -->
+    <script type="text/javascript" src="js/animated.js"></script>
+    <!-- mon modèle de page -->
+    <script type="text/javascript" src="js/pageModel.js"></script>
+    <!-- le paramétrage global -->
+    <script type="text/javascript" src="js/main.params.js"></script>
+    <!-- les ecrans de connexion -->
+    <script type="text/javascript" src="js/main.js"></script>
+    <!-- la partie carte, tres grosse -->
+    <script type="text/javascript" src="js/main.map.js"></script>
+    <meta name="theme-color" content="#A03030">
+</head>
+
+<body id="body">
+    <header class="header">
+        <section class="header_content">
+            <span>
+                <span class="header_icon">
+                    <img id="backButton" src="svg/back.svg" class="header_icon"/>
+                    <img id="offButton" src="svg/off.svg" class="header_icon"/>
+                </span> <span id="header_title"></span>
+            </span>
+            <span id="header_button">
+                <img id="wait" src="svg/wait.svg" class="header_icon" />
+            </span>
+        </section>
+    </header>
+
+    <div id="errors"></div>
+
+
+    <section id="container">
+        <div id="loading"></div>
+        <div id="page">
+            <!-- ici le contenu des pages -->
+        </div>
+    </section>
+
+</body>
+
+</html>
