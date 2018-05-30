@@ -19,7 +19,7 @@ class main(webapp2.RequestHandler):
     def get(self):
         logging.info("Demarrage")
         template = jinja_environment.get_template('index.html')
-    
+
         self.response.out.write(template.render())
 
 #############################################################################
