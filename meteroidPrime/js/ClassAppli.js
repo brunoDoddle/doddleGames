@@ -200,6 +200,11 @@ function clsAppli() {
         return false;
     });
 
+    $("#play_Howto").click(function (e) {
+        $("#menu").addClass("cOut");
+        $("#howToPlay").removeClass("cOut");
+        return false;
+    });
 
     $("#level_Cancel").click(function (e) {
         $("#nameLevel").addClass("cOut");
@@ -338,6 +343,17 @@ function clsAppli() {
         return false;
     });
     //endregion MENU
+
+    /*#######################################*/
+    /*Le menu*/
+    /*#######################################*/
+    //region HOWTOPLAY
+    $("#howToPlay_close").click(function (e) {
+        $("#menu").removeClass("cOut");
+        $("#howToPlay").addClass("cOut");
+        return false;
+    });
+    //endregion HOWTOPLAY
 
     /*#######################################*/
     /*Le generateur de niveau */
