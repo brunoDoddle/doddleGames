@@ -1,14 +1,14 @@
 <html lang="fr">
 
 <head>
-    <meta content="text/html; charset=utf-8" http-equiv="content-type"/>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <title>Meteroid Prime</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="description" content="StrasWar"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="theme-color" content="#A03030"/>
-    <link rel="manifest" href="json/manifest.json"/>
-    <link rel="stylesheet" href="css/main.css"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="StrasWar" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#A03030" />
+    <link rel="manifest" href="json/manifest.json" />
+    <link rel="stylesheet" href="css/main.css" />
 </head>
 
 <body>
@@ -16,6 +16,7 @@
     <script type="text/javascript" src="commonJS/myLoader.js"></script>
     <script type="text/javascript" src="commonJS/common.js"></script>
     <script type="text/javascript" src="commonJS/noSleep.js"></script>
+    <script type="text/javascript" src="js/gyro.js"></script>
     <script type="text/javascript" src="js/ClassCookies.js"></script>
     <script type="text/javascript" src="js/ClassStore.js"></script>
     <script type="text/javascript" src="js/ClassFetch.js"></script>
@@ -52,6 +53,7 @@
             <div id="play_playGame">Play</div>
             <div id="play_web">Web Level</div>
             <div id="play_GenerateLevel">Generate Level</div>
+            <div id="play_Howto">How to play ?</div>
             <!-- TODO: a faire....
 <div id="play_hallOfFame">Hall of Fame</div>
 <div id="play_quit">Quit?</div>-->
@@ -73,39 +75,39 @@
             <legend>Custom level</legend>
             <div class="flexH">
                 <span>Length</span>
-                <input type="range" id="generateLevel_sectorSize" value="30" max="120" min="30" step="30"/>
+                <input type="range" id="generateLevel_sectorSize" value="30" max="120" min="30" step="30" />
             </div>
             <div class="flexH">
                 <span>Meteors</span>
-                <input type="range" id="generateLevel_meteorPerRow" value="2" max="8" min="1" step="1"/>
+                <input type="range" id="generateLevel_meteorPerRow" value="2" max="8" min="1" step="1" />
             </div>
             <div class="flexH">
                 <span>Smaller</span>
-                <input type="range" id="generateLevel_typeOf_nullMeteor" value="100" max="100" min="0" step="10"/>
+                <input type="range" id="generateLevel_typeOf_nullMeteor" value="100" max="100" min="0" step="10" />
             </div>
             <div class="flexH">
                 <span>Little</span>
-                <input type="range" id="generateLevel_typeOf_littleMeteor" value="100" max="100" min="0" step="10"/>
+                <input type="range" id="generateLevel_typeOf_littleMeteor" value="100" max="100" min="0" step="10" />
             </div>
             <div class="flexH">
                 <span>Medium</span>
-                <input type="range" id="generateLevel_typeOf_smallMeteor" value="100" max="100" min="0" step="10"/>
+                <input type="range" id="generateLevel_typeOf_smallMeteor" value="100" max="100" min="0" step="10" />
             </div>
             <div class="flexH">
                 <span>Normal</span>
-                <input type="range" id="generateLevel_typeOf_mediumMeteor" value="100" max="100" min="0" step="10"/>
+                <input type="range" id="generateLevel_typeOf_mediumMeteor" value="100" max="100" min="0" step="10" />
             </div>
             <div class="flexH">
                 <span>Big</span>
-                <input type="range" id="generateLevel_typeOf_bigMeteor" value="100" max="100" min="0" step="10"/>
+                <input type="range" id="generateLevel_typeOf_bigMeteor" value="100" max="100" min="0" step="10" />
             </div>
             <div class="flexH">
                 <span>Coin</span>
-                <input type="range" id="generateLevel_typeOf_money" value="50" max="100" min="0" step="10"/>
+                <input type="range" id="generateLevel_typeOf_money" value="50" max="100" min="0" step="10" />
             </div>
             <div class="flexH">
                 <span>Energy</span>
-                <input type="range" id="generateLevel_typeOf_energy" value="20" max="100" min="0" step="10"/>
+                <input type="range" id="generateLevel_typeOf_energy" value="20" max="100" min="0" step="10" />
             </div>
         </fieldset>
         <div class="buttons">

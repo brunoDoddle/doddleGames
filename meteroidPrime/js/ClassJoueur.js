@@ -56,18 +56,20 @@ function clsJoueur(width, height, mulX, mulY) {
     this.bindAll = function () {
         if (DODDLE.commons.testPhone()) {
             console.log("Phone mode");
+            $(document).on('touchstart', addAZbam);
+
             // TODO: Ajouter le calibrage de l'accelerometre... 5sec pour calibrer puis envois flag pour pluie meteor...
-            if (window.DeviceOrientationEvent) {
-                window.addEventListener("deviceorientation", function () {
-                    if (oldBeta == null) oldBeta = event.beta; // config de facon temporaire...
-                    if (oldGamma == null) oldGamma = event.gamma;
-                    acc = {
-                        x: (event.gamma - oldGamma) / divisor,
-                        y: (event.beta - oldBeta) / divisor,
-                    };
-                }, true);
-                $(document).on('touchstart', addAZbam);
-            } else console.error("DeviceOrientationEvent non supporté!");
+            // if (window.DeviceOrientationEvent) {
+            //     window.addEventListener("deviceorientation", function () {
+            //         if (oldBeta == null) oldBeta = event.beta; // config de facon temporaire...
+            //         if (oldGamma == null) oldGamma = event.gamma;
+            //         acc = {
+            //             x: (event.gamma - oldGamma) / divisor,
+            //             y: (event.beta - oldBeta) / divisor,
+            //         };
+            //     }, true);
+            //     $(document).on('touchstart', addAZbam);
+            // } else console.error("DeviceOrientationEvent non supporté!");
             move = movePhone;
         } else {
             console.log("Desk mode");
@@ -92,11 +94,15 @@ function clsJoueur(width, height, mulX, mulY) {
     }
 
     function movePhone() {
+        const o = gyro.getOrientation(); // retrieves the last measures
         dirGD = 0;
-        x += acc.x;
-        y += acc.y;
-        if (acc.x < -2) dirGD = 1; // On ne fait pas tourner trop le vaisseau si pas assez solicité
-        if (acc.x > 2) dirGD = 2;
+        x += o.gamma / divisor;
+        y += o.beta / divisor;
+        console.log(x + " " + y);
+        // x += acc.x;
+        // y += acc.y;
+        // if (acc.x < -2) dirGD = 1; // On ne fait pas tourner trop le vaisseau si pas assez solicité
+        // if (acc.x > 2) dirGD = 2;
         testLimit();
     }
 

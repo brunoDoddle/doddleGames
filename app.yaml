@@ -59,9 +59,12 @@ handlers:
 - url: /meteroidPrime/json
   static_dir: meteroidPrime/json
 
+#- url: /(.*)/js
+#  static_dir: \1/js
+
 - url: /meteroidPrime/js
   static_dir: meteroidPrime/js
-
+  
 - url: /meteroidPrime/css
   static_dir: meteroidPrime/css
 
@@ -180,8 +183,12 @@ skip_files:
 - /docs/.*
 - /strasWar/docs/.*
 - /oneInWall/docs/.*
+- /meteroidPrime/docs/.*
 - /strasWar/.*~
 - /oneInWall/.*~
+- /meteroidPrime/.*~
+- /.*~
+- /*.md
 
 # Les differentes version de librairies utilisees.
 libraries:

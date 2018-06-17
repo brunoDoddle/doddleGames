@@ -2,7 +2,7 @@ function clsCookies() {
     var _this = this;
     // Mouerf voir pour la durée...
     this.set = function (name, value, days) {
-        if (days) {
+        if (days!=undefined) {
             var date = new Date();
             date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
             var expires = "; expires=" + date.toGMTString();

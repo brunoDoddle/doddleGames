@@ -134,7 +134,6 @@ function clsAppli() {
             return false;
     }
     //=============================
-
     canvas.setAttribute("width", width); // Mappage ecran avec le canvas
     canvas.setAttribute("height", height);
     var sky = new clsParticle(); // Etoiles à la galaga pour le menu
@@ -163,6 +162,7 @@ function clsAppli() {
     /*#######################################*/
     /*Le menu*/
     /*#######################################*/
+    //region MENU
     $("#play_playerName").click(function (e) {
         $("#name").removeClass("cOut");
         $("#play").addClass("cOut");
@@ -337,10 +337,12 @@ function clsAppli() {
     $("#play_quit").click(function (e) {
         return false;
     });
+    //endregion MENU
 
     /*#######################################*/
     /*Le generateur de niveau */
     /*#######################################*/
+    //region GENERATEUR
     $("#generateLevel_validate").click(function (e) {
         $("#game").removeClass("cOut");
         $("#generateLevel").addClass("cOut");
@@ -353,10 +355,12 @@ function clsAppli() {
         $("#generateLevel").addClass("cOut");
         return false;
     });
+    //endregion GENERATEUR
 
     /*#######################################*/
     /*Le selecteur de niveau */
     /*#######################################*/
+    //region SELECTEUR
     /*
         $("#selectLevel_validate").click(function (e) {
             $("#game").removeClass("cOut");
@@ -364,15 +368,18 @@ function clsAppli() {
             initGame();
         });*/
 
+
     $("#selectLevel_cancel").click(function (e) {
         $("#menu").removeClass("cOut");
         $("#selectLevel").addClass("cOut");
         return false;
     });
+    //endregion SELECTEUR
 
     /*#######################################*/
     /*Le selecteur de niveau web */
     /*#######################################*/
+    //region SELECTEURWEB    
     /*
         $("#selectWeb_validate").click(function (e) {
             $("#game").removeClass("cOut");
@@ -385,10 +392,12 @@ function clsAppli() {
         $("#selectWeb").addClass("cOut");
         return false;
     });
+    //endregion SELECTEURWEB    
 
     /*#######################################*/
     /*La fin du jeux*/
     /*#######################################*/
+    //region FINJEUX
     $("#retryGame").click(function (e) {
         $("#endGame").addClass("cOut");
         initMeteor();
@@ -514,10 +523,12 @@ function clsAppli() {
             })
         });
     }
+    //endregion FINJEUX
 
     /*#######################################*/
     /*Le jeux*/
     /*#######################################*/
+    //region JEUX
     function initGame(meteorToo = true) {
         DODDLE.noSleep.enable();
         clearInterval(interval);
@@ -535,6 +546,11 @@ function clsAppli() {
     }
 
     function initMeteor() {
+        if (gyro.hasFeature("devicemotion")) {
+            gyro.raz(); // Calibrate measurement during the page loading
+            gyro.calibrate(); // Calibrate measurement during the page loading
+        } else console.error("DeviceOrientationEvent non supporté!");
+
         startGame = new Date().getTime();
         startMeteor = new Date().getTime();
         game_Ended = false;
@@ -691,7 +707,7 @@ function clsAppli() {
 
     function meteorGame() {
         var collidedMeteor = [];
-        // On nettois le fond
+        // On efface le fond
         context.clearRect(0, 0, canvas.width, canvas.height);
 
         // On draw le fond
@@ -768,4 +784,5 @@ function clsAppli() {
             console.log("AddTry ok!");
         });
     }
+    //endregion FINJEUX
 }

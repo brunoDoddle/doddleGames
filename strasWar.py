@@ -44,6 +44,7 @@ class dbClan(ndb.Model):
     # dbWar sera son ancetre
     nom = ndb.StringProperty()
     couleur = ndb.StringProperty()
+    alive = ndb.BooleanProperty(default=True) # permet de savoir si le clan est encore actif
 
     @classmethod
     def chercheNomClan(cls, nom):
@@ -51,6 +52,7 @@ class dbClan(ndb.Model):
 
     @classmethod
     def listeClan(cls, ancestor_key):
+        # TODO: Utiliser alive pour savoir si clan en vie ou pas..
         return cls.query(ancestor=ancestor_key).order(cls.nom)
 
 class dbUser(ndb.Model):
@@ -111,7 +113,7 @@ class dbWarResult(ndb.Model):
     winnerClan = ndb.KeyProperty(kind=dbClan) # Qui l'a gagne
     participants = ndb.KeyProperty(kind=dbUser,repeated=True) # La liste des participants
     timestamp = ndb.DateTimeProperty(auto_now_add=True) # La date au cas ou historisation
-    zonesHistory = ndb.KeyProperty(kind=dbHistory)
+    zonesHistory = ndb.KeyProperty(kind=dbHistory)  # Historique de la zone (couleur et précédent proprio) -> utilité previousClan ???
     tour = ndb.IntegerProperty()
 
     timeLine = ndb.JsonProperty()        # la timeline principale de l'animation
@@ -235,7 +237,7 @@ class getMyWarResult(webapp2.RequestHandler):
         logging.info("getConcernedWar for:"+user)
         u = ndb.Key(urlsafe=user).get()
 
-        # On recupere els resultat de guerre qui ont un rapport avec le joueur
+        # On recupere les resultat de guerre qui ont un rapport avec le joueur
         wr = dbWarResult.selectConcerned(u.key)
 
         results = []
@@ -322,7 +324,7 @@ class getWars(webapp2.RequestHandler):
         self.response.headers['Content-Type'] = 'application/json'
         json.dump(war,self.response.out)
 
-# Recupere eels users d'un claan
+# Recupere les users d'un claan
 class getUsers(webapp2.RequestHandler):
     def get(self):
         clan = self.request.get("clan")
