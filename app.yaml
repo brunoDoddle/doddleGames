@@ -189,6 +189,11 @@ skip_files:
 - /meteroidPrime/.*~
 - /.*~
 - /*.md
+- /*.scss
+- /*.idea
+- /*.pyc
+- /*.buildconfig
+- /*.vscode
 
 # Les differentes version de librairies utilisees.
 libraries:

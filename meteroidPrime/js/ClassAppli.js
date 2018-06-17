@@ -1,5 +1,5 @@
-// durant partie web, web passe à false et stored à true ?? Ui a fait ça ?? Directory ?? RETRY ??
 function clsAppli() {
+    //region VARIABLES
     // UID de l'appareil...
     var auid = null;
     // UID ndb en base, si vide impossible de se connecter
@@ -38,7 +38,9 @@ function clsAppli() {
     var height = window.innerHeight;
     var mulX = width / 360; // largeur de référence
     var mulY = height / 640; // hauteur de référence
+    //endregion VARIABLES
 
+    //region FONCTIONS
     //=============================
     //= Get uuid
     //=============================
@@ -134,6 +136,9 @@ function clsAppli() {
             return false;
     }
     //=============================
+    //endregion FONCTIONS
+
+    //region START
     canvas.setAttribute("width", width); // Mappage ecran avec le canvas
     canvas.setAttribute("height", height);
     var sky = new clsParticle(); // Etoiles à la galaga pour le menu
@@ -157,8 +162,8 @@ function clsAppli() {
 
     // On cache la div bloquante
     blocker.hide();
+    //endregion START
 
-    /*On assigne les différentes actions*/
     /*#######################################*/
     /*Le menu*/
     /*#######################################*/
@@ -345,7 +350,7 @@ function clsAppli() {
     //endregion MENU
 
     /*#######################################*/
-    /*Le menu*/
+    /*Le How to Play*/
     /*#######################################*/
     //region HOWTOPLAY
     $("#howToPlay_close").click(function (e) {
@@ -395,7 +400,7 @@ function clsAppli() {
     /*#######################################*/
     /*Le selecteur de niveau web */
     /*#######################################*/
-    //region SELECTEURWEB    
+    //region SELECTEURWEB
     /*
         $("#selectWeb_validate").click(function (e) {
             $("#game").removeClass("cOut");
@@ -408,7 +413,7 @@ function clsAppli() {
         $("#selectWeb").addClass("cOut");
         return false;
     });
-    //endregion SELECTEURWEB    
+    //endregion SELECTEURWEB
 
     /*#######################################*/
     /*La fin du jeux*/

@@ -1,0 +1,11 @@
+$base-color: pink;
+
+p {
+  color: lighten($base-color, 10%);
+  color: darken($base-color, 10%);
+  color: transparentize($base-color, 0.5);
+}
+
+a {
+  height: 10px;
+} 
