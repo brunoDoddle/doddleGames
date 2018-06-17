@@ -437,7 +437,7 @@ DODDLE.strasWar.chooseClanZoom = function (clanId) {
     });
 
     DODDLE.strasWar.bounds = bounds;
-    DODDLE.strasWar.map.panToBounds(DODDLE.strasWar.bounds); // FIXME: On cadre fitBounds
+    DODDLE.strasWar.map.fitBounds(DODDLE.strasWar.bounds); // FIXME: On cadre panToBounds
     DODDLE.strasWar.clan = clanId;
 
     google.maps.event.addListenerOnce(DODDLE.strasWar.map, 'idle', function () {
