@@ -180,20 +180,17 @@ handlers:
 
 # Les fichiers a ne pas uploader (fichier de travail du projet)
 skip_files:
-- /docs/.*
-- /strasWar/docs/.*
-- /oneInWall/docs/.*
-- /meteroidPrime/docs/.*
-- /strasWar/.*~
-- /oneInWall/.*~
-- /meteroidPrime/.*~
-- /.*~
-- /*.md
-- /*.scss
-- /*.idea
-- /*.pyc
-- /*.buildconfig
-- /*.vscode
+- ^(.*/)?.*~$
+- ^(.*/)?.*\.py[co]$
+- ^(.*/)?.*\.md$
+- ^(.*/)?.*\.scss$
+- ^(.*/)?.*\.buildconfig$
+- ^(.*/)?\..*$
+- docs/
+- strasWar/docs/
+- oneInWall/docs/
+- meteroidPrime/docs/
+- ^_.*
 
 # Les differentes version de librairies utilisees.
 libraries:

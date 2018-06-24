@@ -145,7 +145,7 @@ function clsMeteor(mulX, mulY) {
 
         this.animation = function () {
             this.angle += this.speedRotate;
-            if (this.angle >= (nbImage - 1)) this.angle = 0; // FIXME: Ouerf pas bien voir dégueulasse
+            if (this.angle >= (nbImage - 1)) this.angle = this.angle - (nbImage -1);
 
             return (Math.round(this.angle) * this.width);
         }

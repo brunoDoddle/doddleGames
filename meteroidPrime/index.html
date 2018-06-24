@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#A03030" />
     <link rel="manifest" href="json/manifest.json" />
-    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/main.min.css" />
 </head>
 
 <body>
@@ -50,9 +50,9 @@
             <span class="subTitle">Your welcome</span>
             <div id="play_playerName">UNKNOW</div>
             <span class="subTitle">Want to,</span>
-            <div id="play_playGame">Play</div>
-            <div id="play_web">Web Level</div>
-            <div id="play_GenerateLevel">Generate Level</div>
+            <div id="play_GenerateLevel">Generate level</div>
+            <div id="play_playGame">Play generated level</div>
+            <div id="play_web">Play web Level</div>
             <div id="play_Howto">How to play ?</div>
         </section>
         <section id="name" class="abs c cOut flex">
@@ -98,7 +98,7 @@
     <!--La création de niveau-->
     <!--#####################################################-->
     <section id="generateLevel" class="abs c cOut flex">
-        <fieldset class="w80 field">
+        <fieldset class="w80">
             <legend>Custom level</legend>
             <div class="flexH">
                 <span>Length</span>
@@ -170,7 +170,7 @@
     <section id="selectWeb" class="abs c cOut w80">
         <section class="abs c flex">
             <section id="petitLogo"><img id="choose" src="ressources/chooseWeb.png" class="expend" /></section>
-            <ul id="readWeb" class="level flex space">
+            <ul id="readWeb" class="level flexScroll space">
 
             </ul>
             <div class="buttons">
@@ -182,7 +182,7 @@
     <!--Le jeux en lui même-->
     <!--#####################################################-->
     <section id="game" class="abs c cOut w80">
-        <section id="score">
+        <section class="affichage">
             <div id="energy"></div>
             <div>
                 <img src="ressources/coin.png" class="picto" />

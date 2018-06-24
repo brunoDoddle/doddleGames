@@ -57,19 +57,6 @@ function clsJoueur(width, height, mulX, mulY) {
         if (DODDLE.commons.testPhone()) {
             console.log("Phone mode");
             $(document).on('touchstart', addAZbam);
-
-            // TODO: Ajouter le calibrage de l'accelerometre... 5sec pour calibrer puis envois flag pour pluie meteor...
-            // if (window.DeviceOrientationEvent) {
-            //     window.addEventListener("deviceorientation", function () {
-            //         if (oldBeta == null) oldBeta = event.beta; // config de facon temporaire...
-            //         if (oldGamma == null) oldGamma = event.gamma;
-            //         acc = {
-            //             x: (event.gamma - oldGamma) / divisor,
-            //             y: (event.beta - oldBeta) / divisor,
-            //         };
-            //     }, true);
-            //     $(document).on('touchstart', addAZbam);
-            // } else console.error("DeviceOrientationEvent non supporté!");
             move = movePhone;
         } else {
             console.log("Desk mode");

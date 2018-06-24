@@ -139,6 +139,7 @@ function clsAppli() {
     //endregion FONCTIONS
 
     //region START
+    //TODO: Ajouter lecture tableau local et cacher #play_playGame si vide... Pas si bonne idée...
     canvas.setAttribute("width", width); // Mappage ecran avec le canvas
     canvas.setAttribute("height", height);
     var sky = new clsParticle(); // Etoiles à la galaga pour le menu
@@ -184,7 +185,7 @@ function clsAppli() {
 
         console.log("Name>" + _name);
         $("#play_playerName").text(_name);
-        DODDLE.cookies.set("name", _name);
+        DODDLE.cookies.put("name", _name);
         // On set le nom
         getpersoUUID(_name, auid).then(function (e) {
             webLevelAuthorize();
@@ -254,20 +255,21 @@ function clsAppli() {
         return false;
     });
 
+    //TODO: Utiliser flex et des picto pour le promote
     $("#play_playGame").click(function (e) {
         $("#menu").addClass("cOut");
         $("#selectLevel").removeClass("cOut");
         console.log("[play_playGame]");
         DODDLE.store.directory().then(function (levels) {
             var container = $("#readLevel");
-            $("#storeLevel").empty(); // Meme id, donc ont vide...
+            $("#storeLevel").empty(); // Meme id, donc on vide...
             container.empty();
 
             if (levels.length > 0) {
                 //$("#selectLevel_validate").show();
                 levels.forEach((level, n) => {
                     var li = "<li><span id='level" + n + "'>LEVEL " + n + "</span>";
-                    if (webAuthorize() && level.ended) li += "<span class='promote' id='plevel" + n + "'> PRO</span>"; // TODO: Faire une icone...
+                    if (webAuthorize() && level.ended) li += "<img class='pictoList' id='plevel" + n + "' src='ressources/megaphone.svg'/>";
                     //li += "<span>" + level.maxCoin + "</span>";
                     li += "</li>";
                     container.append(li);
@@ -311,8 +313,8 @@ function clsAppli() {
             if (result.data.groupes.length > 0) {
                 result.data.groupes.forEach(groupe => {
                     container.append("<menu id='" + groupe.creatorName + "'>" + groupe.creatorName + "</menu>");
-                    groupe.levels.forEach(level => {
-                        container.append("<li id='" + level.key + "'>" + level.name + "</li>");
+                    groupe.levels.forEach(level => {    //TODO: Faire laffichage des highScores
+                        container.append("<li class='espace'><span id='" + level.key + "'>" + level.name + "</span><span><img class='pictoList' src='ressources/score.svg' /></span></li>");
                         $("#" + level.key).click(function (e) {
                             var data = {
                                 id: e.target.id
@@ -791,7 +793,7 @@ function clsAppli() {
             container.empty();
 
             result.data.highScore.forEach((score, n) => {
-                container.append("<li id='score" + n + "'>" + score.name + "......." + score.score + "</li>");
+                container.append("<li class='espace'><span>" + score.name + "</span><span>.......</span><span>" + score.score + "</span></li>");
             })
         });
 
