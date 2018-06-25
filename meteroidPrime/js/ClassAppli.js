@@ -1,5 +1,5 @@
 function clsAppli() {
-    //region VARIABLES
+    //VARIABLES region
     // UID de l'appareil...
     var auid = null;
     // UID ndb en base, si vide impossible de se connecter
@@ -38,9 +38,9 @@ function clsAppli() {
     var height = window.innerHeight;
     var mulX = width / 360; // largeur de référence
     var mulY = height / 640; // hauteur de référence
-    //endregion VARIABLES
+    //endregion
 
-    //region FONCTIONS
+    //FONCTION region
     //=============================
     //= Get uuid
     //=============================
@@ -138,8 +138,7 @@ function clsAppli() {
     //=============================
     //endregion FONCTIONS
 
-    //region START
-    //TODO: Ajouter lecture tableau local et cacher #play_playGame si vide... Pas si bonne idée...
+    //START region
     canvas.setAttribute("width", width); // Mappage ecran avec le canvas
     canvas.setAttribute("height", height);
     var sky = new clsParticle(); // Etoiles à la galaga pour le menu
@@ -166,9 +165,7 @@ function clsAppli() {
     //endregion START
 
     /*#######################################*/
-    /*Le menu*/
-    /*#######################################*/
-    //region MENU
+    //MENU region
     $("#play_playerName").click(function (e) {
         $("#name").removeClass("cOut");
         $("#play").addClass("cOut");
@@ -313,7 +310,7 @@ function clsAppli() {
             if (result.data.groupes.length > 0) {
                 result.data.groupes.forEach(groupe => {
                     container.append("<menu id='" + groupe.creatorName + "'>" + groupe.creatorName + "</menu>");
-                    groupe.levels.forEach(level => {    //TODO: Faire laffichage des highScores
+                    groupe.levels.forEach(level => { //TODO: Faire l'affichage des highScores
                         container.append("<li class='espace'><span id='" + level.key + "'>" + level.name + "</span><span><img class='pictoList' src='ressources/score.svg' /></span></li>");
                         $("#" + level.key).click(function (e) {
                             var data = {
@@ -350,22 +347,20 @@ function clsAppli() {
         return false;
     });
     //endregion MENU
+    /*#######################################*/
 
     /*#######################################*/
-    /*Le How to Play*/
-    /*#######################################*/
-    //region HOWTOPLAY
+    //HOWTOPLAY region
     $("#howToPlay_close").click(function (e) {
         $("#menu").removeClass("cOut");
         $("#howToPlay").addClass("cOut");
         return false;
     });
     //endregion HOWTOPLAY
+    /*#######################################*/
 
     /*#######################################*/
-    /*Le generateur de niveau */
-    /*#######################################*/
-    //region GENERATEUR
+    //GENERATEUR region
     $("#generateLevel_validate").click(function (e) {
         $("#game").removeClass("cOut");
         $("#generateLevel").addClass("cOut");
@@ -379,11 +374,10 @@ function clsAppli() {
         return false;
     });
     //endregion GENERATEUR
+    /*#######################################*/
 
     /*#######################################*/
-    /*Le selecteur de niveau */
-    /*#######################################*/
-    //region SELECTEUR
+    //SELECTEUR region
     /*
         $("#selectLevel_validate").click(function (e) {
             $("#game").removeClass("cOut");
@@ -398,11 +392,10 @@ function clsAppli() {
         return false;
     });
     //endregion SELECTEUR
+    /*#######################################*/
 
     /*#######################################*/
-    /*Le selecteur de niveau web */
-    /*#######################################*/
-    //region SELECTEURWEB
+    //SELECTEURWEB region
     /*
         $("#selectWeb_validate").click(function (e) {
             $("#game").removeClass("cOut");
@@ -416,11 +409,10 @@ function clsAppli() {
         return false;
     });
     //endregion SELECTEURWEB
+    /*#######################################*/
 
     /*#######################################*/
-    /*La fin du jeux*/
-    /*#######################################*/
-    //region FINJEUX
+    //FINJEUX region
     $("#retryGame").click(function (e) {
         $("#endGame").addClass("cOut");
         initMeteor();
@@ -547,11 +539,10 @@ function clsAppli() {
         });
     }
     //endregion FINJEUX
+    /*#######################################*/
 
     /*#######################################*/
-    /*Le jeux*/
-    /*#######################################*/
-    //region JEUX
+    //JEUX region
     function initGame(meteorToo = true) {
         DODDLE.noSleep.enable();
         clearInterval(interval);
@@ -808,4 +799,5 @@ function clsAppli() {
         });
     }
     //endregion FINJEUX
+    /*#######################################*/
 }
