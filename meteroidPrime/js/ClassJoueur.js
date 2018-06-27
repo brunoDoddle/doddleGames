@@ -85,11 +85,6 @@ function clsJoueur(width, height, mulX, mulY) {
         dirGD = 0;
         x += o.gamma / divisor;
         y += o.beta / divisor;
-        console.log(x + " " + y);
-        // x += acc.x;
-        // y += acc.y;
-        // if (acc.x < -2) dirGD = 1; // On ne fait pas tourner trop le vaisseau si pas assez solicité
-        // if (acc.x > 2) dirGD = 2;
         testLimit();
     }
 
@@ -182,12 +177,14 @@ function clsJoueur(width, height, mulX, mulY) {
                             break;
                         case "ENERGY":
                             if ($('#energy > *').length < 3) {
+                                DODDLE.sound.playOnce("bip", 0.3);
                                 idEnergy.append(energyModel);
                                 meteor.alive = false;
                                 this.maxEnergy++;
                             }
                             break;
                         case "MONEY":
+                            DODDLE.sound.playOnce("argent", 0.5);
                             nbCoin++;
                             idMoney.text(" " + nbCoin);
                             meteor.alive = false;
@@ -228,13 +225,14 @@ function clsJoueur(width, height, mulX, mulY) {
                 gh * mY);
 
             if (zbamCpt > 0) {
+                DODDLE.sound.play("bouclier");
                 zbamCpt--;
                 ctx.globalCompositeOperation = "color-burn";
                 ctx.drawImage(zb,
                     180 * zbamImg, 0, 180, 180, -zbamSize / 2 * 1.3 * mX, -zbamSize / 2 * 1.3 * mY, zbamSize * 1.3 * mX, zbamSize * 1.3 * mY);
                 zbamImg++;
                 if (zbamImg > 4) zbamImg = 0
-            }
+            } else DODDLE.sound.stop("bouclier");
 
             ctx.restore();
             // On passe à l'image suivante

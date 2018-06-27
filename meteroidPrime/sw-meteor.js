@@ -14,4 +14,4 @@ function myOwnFunctions() {
 // On ajoutes des proto spécifiques
 clsServiceWorker.prototype = new myOwnFunctions();
 
-var sw = new clsServiceWorker("meteroidPrime", "0.25", files);
+var sw = new clsServiceWorker("meteroidPrime", "0.27", files);

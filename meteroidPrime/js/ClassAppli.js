@@ -435,6 +435,7 @@ function clsAppli() {
 
         DODDLE.noSleep.disable();
         joueur.cleaner();
+        DODDLE.sound.clear();
         showMustGoOn();
         return false;
     });
@@ -577,6 +578,10 @@ function clsAppli() {
         // On clear.... Les timers...
         cancelAnimationFrame(interval);
         cancelAnimationFrame(intervalMeteorLaunch);
+
+        // on clear les sons
+        DODDLE.sound.clear();
+        DODDLE.sound.playLoop("ambiance");
 
         // On lance le jeux
         interval = requestAnimationFrame(gameLoop);
@@ -740,6 +745,7 @@ function clsAppli() {
         joueur.update();
         // Collision vaisseau / joueur
         if (joueur.collision(narrows)) {
+            DODDLE.sound.playOnce("explosion");
             console.log("bam");
             $("#loose").show();
             $("#win").hide();

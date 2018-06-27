@@ -145,7 +145,7 @@ function clsMeteor(mulX, mulY) {
 
         this.animation = function () {
             this.angle += this.speedRotate;
-            if (this.angle >= (nbImage - 1)) this.angle = this.angle - (nbImage -1);
+            if (this.angle >= (nbImage - 1)) this.angle = this.angle - (nbImage - 1);
 
             return (Math.round(this.angle) * this.width);
         }
@@ -239,6 +239,7 @@ function clsMeteor(mulX, mulY) {
 
             if ((dist < (zbam.size + meteorToTest.ray) * (zbam.size + meteorToTest.ray)) && zbam.cpt != 0 && alive) {
                 meteorToTest.alive = false;
+                DODDLE.sound.playOnce("explosion", 0.5);
                 this.maxDestroyedMeteor++;
                 collide.push({
                     x: meteorToTest.x,
@@ -264,6 +265,7 @@ function clsMeteor(mulX, mulY) {
                     var noBoom = meteors.filter(meteor => (!meteor.boom && meteor.name == "METEOR")); // On refais une liste de ce qui ne sont pas collisionnée
                     noBoom.forEach(otherMeteor => {
                         if (meteorToTest.collision(otherMeteor)) {
+                            DODDLE.sound.playOnce("collision", 0.3);
                             vxx = (vxx = meteorToTest.x - otherMeteor.x) * vxx;
                             vyy = (vyy = meteorToTest.y - otherMeteor.y) * vyy;
                             dist = Math.sqrt(vxx + vyy);

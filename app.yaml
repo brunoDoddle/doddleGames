@@ -64,7 +64,7 @@ handlers:
 
 - url: /meteroidPrime/js
   static_dir: meteroidPrime/js
-  
+
 - url: /meteroidPrime/css
   static_dir: meteroidPrime/css
 
@@ -198,4 +198,4 @@ libraries:
   version: latest
 
 - name: webapp2
-  version: "2.5.1"
+  version: "2.5.2"
