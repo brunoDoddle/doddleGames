@@ -37,4 +37,4 @@ var files = [
     "png/cycle.png"
 ];
 
-var sw = new clsServiceWorker("strasWar", "0.05", files);
+var sw = new clsServiceWorker("strasWar", "0.06", files);

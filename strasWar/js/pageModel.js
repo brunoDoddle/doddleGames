@@ -38,17 +38,19 @@ function pageModel(titrePage) {
     //=====================================
     function _sendMsg(msg) {
         return new Promise(function (resolve, reject) {
-            var msg_chan = new MessageChannel();
+            if (navigator.serviceWorker.controller) {
+                var msg_chan = new MessageChannel();
 
-            msg_chan.port1.onmessage = function (event) {
-                if (event.data.error) {
-                    reject(event.data.error);
-                } else {
-                    resolve(event.data);
-                }
-            };
+                msg_chan.port1.onmessage = function (event) {
+                    if (event.data.error) {
+                        reject(event.data.error);
+                    } else {
+                        resolve(event.data);
+                    }
+                };
 
-            navigator.serviceWorker.controller.postMessage(msg, [msg_chan.port2]);
+                navigator.serviceWorker.controller.postMessage(msg, [msg_chan.port2]);
+            } else reject("Pas de service Worker?");
         })
     }
 

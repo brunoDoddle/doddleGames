@@ -12,15 +12,18 @@ function clsServiceWorker(name, version, files) {
     // Le pré remplissage du cache
     self.addEventListener('install', function (event) {
         console.log('[ServiceWorker] Install', event);
-        event.waitUntil(caches.open(_precache).then(function (cache) {
-            return cache.addAll(files);
-        }));
-        event.waitUntil(self.skipWaiting()); // Activate worker immediately
+        event.waitUntil(
+            caches.open(_precache).then(function (cache) {
+                return cache.addAll(files);
+            })
+        );
+        self.skipWaiting(); // Activate worker immediately
     });
 
     // Le nettoyage en acs de changement de version
     self.addEventListener('activate', function (event) {
         console.log('[ServiceWorker] Activate', event);
+        self.clients.claim();
         event.waitUntil(
             caches.keys().then(function (cacheNames) {
                 return Promise.all(
@@ -38,7 +41,6 @@ function clsServiceWorker(name, version, files) {
                 );
             })
         );
-        event.waitUntil(self.clients.claim()); // Become available to all pages
     });
 
     // La gestion des messages
