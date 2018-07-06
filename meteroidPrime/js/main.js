@@ -16,18 +16,22 @@ DODDLE.sound = new clsSound();
 myLoader.init(start);
 var ctxAudio = myLoader.setAudioContext();
 DODDLE.sound.init(ctxAudio);
+// IMAGES region
 myLoader.addImage("astro", "ressources/asteroid.png");
 myLoader.addImage("vaisseau", "ressources/vaisseau.png");
 myLoader.addImage("boum", "ressources/bam.png");
 myLoader.addImage("zbam", "ressources/zbam.png");
 myLoader.addImage("coin", "ressources/coin.png");
 myLoader.addImage("energy", "ressources/burn.png");
+// endregion
+// SONS region
 myLoader.addSound("explosion", "ressources/boum.mp3");
 myLoader.addSound("bouclier", "ressources/electricité.mp3");
 myLoader.addSound("argent", "ressources/coin.mp3");
 myLoader.addSound("bip", "ressources/beep.mp3");
 myLoader.addSound("ambiance", "ressources/ambiance.mp3");
 myLoader.addSound("collision", "ressources/collision.mp3");
+// endregion
 
 $(document).ready(function () {
     myLoader.load();

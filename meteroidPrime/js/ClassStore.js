@@ -1,3 +1,4 @@
+// Stockage dans le cache du site
 function clsStore(name, version) {
     var cacheName = name + "_v" + version;
     var blocker = $("#block");
