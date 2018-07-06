@@ -15,6 +15,7 @@ function clsServiceWorker(name, version, files) {
         event.waitUntil(caches.open(_precache).then(function (cache) {
             return cache.addAll(files);
         }));
+        event.waitUntil(self.skipWaiting()); // Activate worker immediately
     });
 
     // Le nettoyage en acs de changement de version
@@ -37,6 +38,7 @@ function clsServiceWorker(name, version, files) {
                 );
             })
         );
+        event.waitUntil(self.clients.claim()); // Become available to all pages
     });
 
     // La gestion des messages

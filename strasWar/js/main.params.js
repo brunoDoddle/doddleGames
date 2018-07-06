@@ -271,7 +271,7 @@ DODDLE.strasWar = {
 };
 
 DODDLE.strasWar = {
-    version: "v1.3",
+    version: "v1.4",
     test: false, // Foncionnalités utiles pour tester
     default_color: "#333333",
     map: null,

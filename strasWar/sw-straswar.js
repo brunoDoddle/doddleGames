@@ -1,4 +1,3 @@
-//https://cloud.google.com/appengine/docs/standard/python/taskqueue/push/ <- parait pas être la bonne soluce...
 importScripts("commonJS/ClassServiceWorker.js");
 
 var files = [
@@ -38,4 +37,4 @@ var files = [
     "png/cycle.png"
 ];
 
-var sw = new clsServiceWorker("strasWar", "0.03", files);
+var sw = new clsServiceWorker("strasWar", "0.05", files);
