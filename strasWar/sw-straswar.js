@@ -1,7 +1,6 @@
 importScripts("commonJS/ClassServiceWorker.js");
 
 var files = [
-    'favicon.ico',
     'index.html',
     'html/main.html',
     'html/mainHelp.html',

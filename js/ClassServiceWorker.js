@@ -67,8 +67,9 @@ function clsServiceWorker(name, version, files) {
         // Et celle vers les sites externes ??? crosssitting (oarf oarf) ???
         // Les requetes sans extension sont sytématiquement uniquement serveur ? La ont dit que oui...
         // Si on a une extention on cherche dans le cache... postulat: extension = ressource
-        if (event.request.url.split('.').length > 1) {
-            console.log('[ServiceWorker] Cache', event);
+        var url = parseURL(event.request.url);
+        if (url.indexOf(".") != -1) {
+            console.log('[ServiceWorker] Cache ' + url, event);
             event.respondWith(
                 // Cache, puis serveur et mise en cache
                 caches.match(event.request).then(cachedResponse => {
@@ -89,7 +90,7 @@ function clsServiceWorker(name, version, files) {
                 })
             )
         } else {
-            console.log('[ServiceWorker] Fetch', event);
+            console.log('[ServiceWorker] Fetch ' + url, event);
             event.respondWith( // Sinon c'est serveur... -> utilisatin de la classe fetch si besoin particulier...}
                 fetch(event.request)
             )
@@ -101,6 +102,14 @@ function clsServiceWorker(name, version, files) {
     self.addEventListener('sync', function (event) {
         console.log('[ServiceWorker] Sync', event);
     });
+
+    function parseURL(url) {
+        var urlListe = url.split("/");
+        url = urlListe[urlListe.length - 1];
+        var query = url.indexOf("?");
+        if (query != -1) url = url.substr(0, query);
+        return url;
+    }
 
     /*    function messages(event) {
             switch (event.data) {
