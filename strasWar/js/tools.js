@@ -16,6 +16,17 @@ Image.prototype.getDataURL = function () {
     return dataURL;
 };
 
+//===============================================================================
+// Cacul du centre d'une zone
+//===============================================================================
+google.maps.Polygon.prototype.getBoundsCenter = function () {
+    var bounds = new google.maps.LatLngBounds()
+    this.getPath().forEach(function (element, index) {
+        bounds.extend(element)
+    })
+    return bounds.getCenter();
+}
+
 DODDLE.tools = {};
 
 DODDLE.tools.latLngToPixel = function (latLng, map) {

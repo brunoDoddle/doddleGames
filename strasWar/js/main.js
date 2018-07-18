@@ -18,6 +18,15 @@ $(document).ready(
 );
 
 DODDLE.strasWar.start = function () {
+    // Si on quitte la page sur smartPhoneon on deconnecte le joueur
+    if (DODDLE.commons.testPhone && !DODDLE.strasWar.test) {
+        document.addEventListener("visibilitychange", function () {
+            if (document.hidden) {
+                // Si on est caché on se deconnecte
+                DODDLE.strasWar.deconnecte();
+            }
+        }, false);
+    }
 
     // Partie on/off line...
     window.addEventListener("offline", function () {
@@ -686,33 +695,36 @@ DODDLE.strasWar.loginValidation = function () {
 //** Deconnexion du joueur
 //**************************************************************************
 DODDLE.strasWar.deconnecte = function () {
-    DODDLE.strasWar.page.callServer("logOff", {
-            uuid: DODDLE.strasWar.joueur.uuid
-        })
-        .then(
-            function (data) {
-                if (data.etat == 'ko')
-                    DODDLE.strasWar.page.addWarningMessage(data.msg);
-                else {
-                    DODDLE.strasWar.page.killAuthenticate(DODDLE.strasWar.joueur.userid);
-                    DODDLE.strasWar.pilotage('start');
+    // Si uuid à 0 c'est qu'on est plus connecté
+    if (DODDLE.strasWar.joueur.uuid != 0) {
+        DODDLE.strasWar.page.callServer("logOff", {
+                uuid: DODDLE.strasWar.joueur.uuid
+            })
+            .then(
+                function (data) {
+                    if (data.etat == 'ko')
+                        DODDLE.strasWar.page.addWarningMessage(data.msg);
+                    else {
+                        DODDLE.strasWar.page.killAuthenticate(DODDLE.strasWar.joueur.userid);
+                        DODDLE.strasWar.pilotage('start');
+                    }
+                    DODDLE.strasWar.joueur = {};
+                    DODDLE.strasWar.war = {};
+                    DODDLE.strasWar.zones = [];
+                    DODDLE.strasWar.clan = null;
                 }
-                DODDLE.strasWar.joueur = {};
-                DODDLE.strasWar.war = {};
-                DODDLE.strasWar.zones = [];
-                DODDLE.strasWar.clan = null;
-            }
-        ).catch(
-            function (error) {
-                DODDLE.strasWar.page.killAuthenticate(DODDLE.strasWar.joueur.userid);
-                DODDLE.strasWar.page.addErrorMessage("Problème lecture:" + error);
-                DODDLE.strasWar.pilotage('start');
-                DODDLE.strasWar.joueur = {};
-                DODDLE.strasWar.war = {};
-                DODDLE.strasWar.zones = [];
-                DODDLE.strasWar.clan = null;
-            }
-        );
+            ).catch(
+                function (error) {
+                    DODDLE.strasWar.page.killAuthenticate(DODDLE.strasWar.joueur.userid);
+                    DODDLE.strasWar.page.addErrorMessage("Problème lecture:" + error);
+                    DODDLE.strasWar.pilotage('start');
+                    DODDLE.strasWar.joueur = {};
+                    DODDLE.strasWar.war = {};
+                    DODDLE.strasWar.zones = [];
+                    DODDLE.strasWar.clan = null;
+                }
+            );
+    }
 };
 //**************************************************************************
 //** Test sur l'autentification du joueur

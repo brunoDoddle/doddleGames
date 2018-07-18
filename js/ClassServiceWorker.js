@@ -63,6 +63,7 @@ function clsServiceWorker(name, version, files) {
     });
 
     // Les réponses au requetes
+    //TODO: requete préfixé par _ pas misent en cache...
     self.addEventListener('fetch', function (event) {
         // Et celle vers les sites externes ??? crosssitting (oarf oarf) ???
         // Les requetes sans extension sont sytématiquement uniquement serveur ? La ont dit que oui...

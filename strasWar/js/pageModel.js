@@ -11,6 +11,7 @@ function pageModel(titrePage) {
     var _buttonsBloc;
     var _connexionTime = 10;
     var _ligthBox, _popUp;
+    var _handler; // handler de function sur le backButton
 
     // Les différentts éléments dynamique géré par le pageModel
     var body = document.getElementById("body"); // on cible le body au cas ou

@@ -271,8 +271,8 @@ DODDLE.strasWar = {
 };
 
 DODDLE.strasWar = {
-    version: "v1.5",
-    test: false, // Foncionnalités utiles pour tester
+    version: "v1.9",
+    test: false, // Fonctionnalités utiles pour tester
     default_color: "#333333",
     map: null,
     survId: null,
@@ -327,5 +327,6 @@ DODDLE.strasWar = {
     ctrl_mod: undefined,
     ctrl_add: undefined,
     markerCible: undefined, // Marker choisi (pour supp ou modif)
-    nbUnites: 0 // Interface affichage nbr unites..
+    nbUnites: 0, // Interface affichage nbr unites..
+    lines: []
 };

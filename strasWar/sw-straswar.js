@@ -33,7 +33,8 @@ var files = [
     'png/bam90x90.png',
     'png/fleche.png',
     'png/laCene.png',
+    'png/roi.png',
     "png/cycle.png"
 ];
 
-var sw = new clsServiceWorker("strasWar", "0.06", files);
+var sw = new clsServiceWorker("strasWar", "0.15", files);

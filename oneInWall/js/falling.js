@@ -4,11 +4,6 @@ function falling() {
     var xt, yt,taille = 1;
 
     this.init = function () {
-        fall = false;
-        taille = 1;
-        angle = 0;
-        noFall = false;
-    }
 
     this.start = function (x,y,acceleration) {
         vx = acceleration.x*2/3;
@@ -17,6 +12,11 @@ function falling() {
         xt = x - vx;
         yt = y + vy;
         fall = true;
+    }
+        fall = false;
+        taille = 1;
+        angle = 0;
+        noFall = false;
     }
 
     this.update = function (ctx,joueur) {

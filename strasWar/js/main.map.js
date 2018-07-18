@@ -147,7 +147,7 @@ DODDLE.strasWar.playWar = function (uuid) {
     //==============================================================
     //==============================================================
 
-    // Color la zone de bagrre...
+    // Color la zone de bagarre...
     //==============================================================
     //==============================================================
     function colorZone(clanUUID, zoneUUID) {
@@ -567,6 +567,19 @@ DODDLE.strasWar.ecranCarte = function () {
 
     DODDLE.strasWar.drawZones();
 
+    // On efface les voisins
+    DODDLE.strasWar.clearVoisinLine();
+    //zone.clan
+    //zone.uuid
+    //zone.voisins (uuid)
+
+    DODDLE.strasWar.zones.forEach(zone => {
+        if (zone.clan == DODDLE.strasWar.clan) {
+            // Si c'est notre clan
+            DODDLE.strasWar.drawVoisins(zone);
+        }
+    })
+
     DODDLE.strasWar.page.callServer("getUnites", {
         userid: DODDLE.strasWar.joueur.userid
     }).then(
@@ -602,6 +615,58 @@ DODDLE.strasWar.ecranCarte = function () {
     });
 
 };
+
+// region DRAW_VOISIN
+DODDLE.strasWar.drawVoisins = function (zone) {
+    var c = zone.getBoundsCenter();
+
+    zone.voisins.forEach(voisin => {
+        var zz = DODDLE.strasWar.searchZoneByUUID(voisin);
+        if (zz) {
+            if (zz.clan != DODDLE.strasWar.clan) {
+                var vc = zz.getBoundsCenter(); //DODDLE.strasWar.getZoneCenter(zz);
+                var line = new google.maps.Polyline({
+                    path: [c, vc],
+                    strokeColor: '#000000',
+                    strokeOpacity: 1.0,
+                    strokeWeight: 3,
+                    icons: [{
+                        icon: {
+                            path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
+                        },
+                        offset: '100%'
+                }]
+                });
+                line.setMap(DODDLE.strasWar.map);
+                DODDLE.strasWar.lines.push(line);
+            }
+        }
+    })
+};
+
+DODDLE.strasWar.searchZoneByUUID = function (uuid) {
+    for (var z in DODDLE.strasWar.zones)
+        if (DODDLE.strasWar.zones[z].uuid == uuid) return DODDLE.strasWar.zones[z];
+    console.error("UUID non trouvé dans zones : " + uuid);
+    return undefined;
+};
+
+DODDLE.strasWar.clearVoisinLine = function () {
+    for (var l in DODDLE.strasWar.lines) {
+        DODDLE.strasWar.lines[l].setMap(null);
+    }
+    DODDLE.strasWar.lines = [];
+};
+
+/*DODDLE.strasWar.getZoneCenter = function (zone) {
+    var bounds = new google.maps.LatLngBounds();
+
+    for (var m in zone.markers) {
+        bounds.extend(zone.markers[m].position);
+    }
+    return bounds.getCenter();
+};*/
+// endregion
 
 DODDLE.strasWar.ecranCarteHelp = function () {
     DODDLE.strasWar.page.callServer("html/ecranCarteHelp.html").then(function (html) {
@@ -750,8 +815,8 @@ DODDLE.strasWar.validerUnites = function () {
         } else {
             DODDLE.strasWar.page.addErrorMessage("Résolution des combats en cours, modification des armées impossibles!");
         }
-    }).catch(function () {
-        DODDLE.strasWar.page.addErrorMessage("problème de communication local! Redémarrer l'application");
+    }).catch(function (e) {
+        DODDLE.strasWar.page.addErrorMessage("problème de communication local (%1)!", e);
     });
 
 };
