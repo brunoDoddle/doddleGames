@@ -526,6 +526,7 @@ DODDLE.strasWar.ecranCarte = function () {
 
     // On cible la map dans ma page
     DODDLE.strasWar.map = new google.maps.Map(_map, DODDLE.strasWar.mapOptions);
+    if (DODDLE.strasWar.test) DODDLE.strasWar.map.draggable=true;
 
     _this.needGoBack("DODDLE.strasWar.ecranCarteGoBack();");
 
@@ -617,25 +618,35 @@ DODDLE.strasWar.ecranCarte = function () {
 };
 
 // region DRAW_VOISIN
+
 DODDLE.strasWar.drawVoisins = function (zone) {
     var c = zone.getBoundsCenter();
-
+    // https://stackoverflow.com/questions/23198372/polylines-with-start-and-end-of-location-in-google-maps-v3
     zone.voisins.forEach(voisin => {
         var zz = DODDLE.strasWar.searchZoneByUUID(voisin);
         if (zz) {
             if (zz.clan != DODDLE.strasWar.clan) {
-                var vc = zz.getBoundsCenter(); //DODDLE.strasWar.getZoneCenter(zz);
+                var vc = zz.getBoundsCenter();
+                var dLng = vc.lng() - c.lng();        // Pente sur la longitude
+                var dLat = vc.lat() - c.lat(); // Pente sur la latitude
+                var dist = 20;      // Ecart en pourcent avec les centres des régions...
+
+                var a = new google.maps.LatLng(c.lat() + dLat*dist/100,c.lng() + dLng*dist/100);
+                var b = new google.maps.LatLng(c.lat() + dLat*(100-dist)/100,c.lng() + dLng*(100-dist)/100);
+
+                // On fait la fléche entre les 2 régions
                 var line = new google.maps.Polyline({
-                    path: [c, vc],
+                    path: [a, b],
                     strokeColor: '#000000',
                     strokeOpacity: 1.0,
-                    strokeWeight: 3,
+                    strokeWeight: 5,
                     icons: [{
                         icon: {
-                            path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
+                            path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+                            fillOpacity: 1
                         },
                         offset: '100%'
-                }]
+                    }]
                 });
                 line.setMap(DODDLE.strasWar.map);
                 DODDLE.strasWar.lines.push(line);

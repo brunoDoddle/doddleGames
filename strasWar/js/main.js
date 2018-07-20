@@ -18,7 +18,14 @@ $(document).ready(
 );
 
 DODDLE.strasWar.start = function () {
-    // Si on quitte la page sur smartPhoneon on deconnecte le joueur
+    // Si dans l'url on a le mot clef test=1 on met le debug :-)
+    if (DODDLE.commons.getQuery("test")=="1") {
+        console.log("[Main] StrasWar - test mode activated");
+        DODDLE.strasWar.test = true;
+    } else console.log("[Main] StrasWar - normal mode");
+
+    // Si on quitte la page sur smartPhone on deconnecte le joueur
+    // Possiblité de chooper event BackButton mais comment ?????
     if (DODDLE.commons.testPhone && !DODDLE.strasWar.test) {
         document.addEventListener("visibilitychange", function () {
             if (document.hidden) {

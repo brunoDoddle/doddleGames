@@ -12,6 +12,7 @@
         return false;
     }
 
+    // Plus utilisé normalement...
     // Gére les caches sur la même URL
     // -> obligation due au PWA gérer sur le même site (sinon on nettois le cache des autres applis)
     commons.prototype.giveMeCache = function (app) {
@@ -43,6 +44,23 @@
             }
         } else throw "Pas de cache prévu pour '" + app + "'!";
     }
+
+    commons.prototype.getQuery = function(param) {
+        var vars = {};
+        window.location.href.replace( location.hash, '' ).replace( 
+            /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+            function( m, key, value ) { // callback
+                vars[key] = value !== undefined ? value : '';
+            }
+        );
+
+        if ( param ) {
+            return vars[param] ? vars[param] : null;    
+        }
+        return vars;
+    }
+
+
     root.commons = commons;
 
 })(this);
