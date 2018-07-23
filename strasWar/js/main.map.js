@@ -213,7 +213,9 @@ DODDLE.strasWar.playWar = function (uuid) {
         DODDLE.strasWar.map.setZoom(z);
         DODDLE.strasWar.drawZones(); // zoom, important pour les tours
         DODDLE.strasWar.playWar.tempo = setInterval(animator, _frameRate);
+
     }
+
     //==============================================================
     // Envois le timer d'animation
     //==============================================================
@@ -504,6 +506,21 @@ DODDLE.strasWar.ecranCarte = function () {
         _infoPos;
 
     _this = DODDLE.strasWar.page;
+    DODDLE.strasWar.towers = true;
+
+    function addControl() {
+        var controlDiv = document.createElement('div');
+        controlDiv.setAttribute("class", "tower");
+
+        // Setup the click event listeners: simply set the map to Chicago.
+        controlDiv.addEventListener('click', function() {
+            DODDLE.strasWar.showHideTowers();
+        });
+
+        controlDiv.index = 1;
+
+        return controlDiv;
+    }    
 
     // Créé les controles ADD et MOD si-besoin
     DODDLE.strasWar.ctrl();
@@ -545,6 +562,10 @@ DODDLE.strasWar.ecranCarte = function () {
     DODDLE.strasWar.infoPos = document.createElement("div");
     DODDLE.strasWar.infoPos.setAttribute("class", "fontMap");
     DODDLE.strasWar.map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(DODDLE.strasWar.infoPos);
+
+    DODDLE.strasWar.towersOnOff = document.createElement("div");
+    DODDLE.strasWar.towersOnOff = addControl();
+    DODDLE.strasWar.map.controls[google.maps.ControlPosition.TOP_LEFT].push(DODDLE.strasWar.towersOnOff);
 
     DODDLE.fetch.call("svg/target.svg").then(function (img) {
         var targetIcon = {
@@ -615,6 +636,16 @@ DODDLE.strasWar.ecranCarte = function () {
         DODDLE.strasWar.noSleep.disable();
     });
 
+};
+
+DODDLE.strasWar.showHideTowers = function(){
+    DODDLE.strasWar.towers=!DODDLE.strasWar.towers;
+    DODDLE.strasWar.tours.forEach(tour => {
+    if (DODDLE.strasWar.towers)
+        tour.setMap(DODDLE.strasWar.map);
+    else
+        tour.setMap(null);
+    });
 };
 
 // region DRAW_VOISIN
@@ -714,6 +745,7 @@ DODDLE.strasWar.ecranCarteWarning = function (pil) {
     _texte.innerHTML = "Attention ! Les ordres ne sont pas validés! Si vous quittez la page ils seront perdus.";
     _bNO = DODDLE.strasWar.page.createAnnulationButton("NON!", "DODDLE.strasWar.page.hidePopUp();");
     _bYES = DODDLE.strasWar.page.createValidationButton("Bah oui...", "DODDLE.strasWar.page.hidePopUp();" + pil);
+
 
     var _d = document.createElement("div");
     _d.setAttribute("class", "popUpBoutonBloc");
@@ -1001,6 +1033,20 @@ DODDLE.strasWar.closeUnites = function () {
 DODDLE.strasWar.ecranShowCarte = function () {
     var _map;
 
+    function addControl() {
+        var controlDiv = document.createElement('div');
+        controlDiv.setAttribute("class", "first");
+
+        // Setup the click event listeners: simply set the map to Chicago.
+        controlDiv.addEventListener('click', function() {
+            DODDLE.strasWar.showHighscore();
+        });
+
+        controlDiv.index = 1;
+
+        return controlDiv;
+    }   
+
     _map = document.createElement("div");
     _map.setAttribute("id", "map-canvas-all");
     DODDLE.strasWar.page.addToPage(_map);
@@ -1014,7 +1060,48 @@ DODDLE.strasWar.ecranShowCarte = function () {
     var z = DODDLE.strasWar.map.getZoom();
     DODDLE.strasWar.map.setZoom(z);
     DODDLE.strasWar.drawZones();
+
+    DODDLE.strasWar.towersOnOff = document.createElement("div");
+    DODDLE.strasWar.towersOnOff = addControl();
+    DODDLE.strasWar.map.controls[google.maps.ControlPosition.TOP_LEFT].push(DODDLE.strasWar.towersOnOff);    
 };
+
+DODDLE.strasWar.showHighscore = function(){
+    DODDLE.strasWar.page.clearPopUp();
+
+    _texte = document.createElement("div");
+    _texte.setAttribute("class", "popUpContainer");
+    _texte.innerHTML = "Le Maitre du monde est";
+    _bYES = DODDLE.strasWar.page.createValidationButton("Ok", "DODDLE.strasWar.page.hidePopUp();");
+
+    //TODO: à terminer
+    // Appel serveur -> retour clan, couleur, nb region, nb tour
+    //DODDLE.tools.giveMeColouredSprite("soldats", 45, 65, searchColor(_winnerClan), 4)
+
+    DODDLE.strasWar.page.callServer("getHighScore", {
+        war: DODDLE.strasWar.war.id
+    }).then(function(data){
+        Object.keys(data).forEach(nom => {
+             _texte.innerHTML += nom  + " " + data[nom].nbRegion + " " + data[nom].couleur
+        })
+    })
+    .catch(function(){
+        alert("planté!");
+    })
+
+    var _d = document.createElement("div");
+    _d.setAttribute("class", "popUpBoutonBloc");
+    _d1 = document.createElement("div");
+    _d1.setAttribute("class", "centPourcent");
+    _d1.appendChild(_bYES);
+    _d.appendChild(_d1);
+
+    DODDLE.strasWar.page.addPopUpContainer(_texte);
+    DODDLE.strasWar.page.addPopUpContainer(_d);
+
+    DODDLE.strasWar.page.showPopUp();
+};
+
 //***********************************************************************************************************
 //***********************************************************************************************************
 //***********************************************************************************************************

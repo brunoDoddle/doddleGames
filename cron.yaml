@@ -1,6 +1,6 @@
 cron:
 - description: "Resolution des guerres"
   url: /strasWar/war
-  schedule: every mon,tue,wed,thu,fri 00:00   # Tous les jours de la semaine
+  schedule: every mon,tue,wed,thu,fri 23:55   # Tous les jours de la semaine
   timezone: Europe/Paris    # Dans la time zone france/paris
 

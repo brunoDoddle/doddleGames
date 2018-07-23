@@ -230,6 +230,39 @@ def init(self):
                     z.clan = clan[0].key
             z.put()
 
+"""Recupere la liste des clan dans l'ordre des gagnants"""
+class getHighScore(webapp2.RequestHandler):
+    def get(self):
+        warId = self.request.get("war")
+        logging.info("getZones:"+ warId)
+        wR = ndb.Key(urlsafe=warId)
+        w = wR.get()
+
+        clans = {}
+        zones = []
+        # Liste des régions de la war
+        results = dbZone.listeZones(w.key).fetch()
+        for r in results:
+            if (r.clan != None):
+                clan = r.clan.get()
+                couleur = clan.couleur
+                if clans.get(clan.nom):
+                    clans[clan.nom].nbRegion = clans[clan.nom].nbRegion + 1
+                    if r.tour == 1:
+                        clans[clan.nom].nbRegion = clans[clan.nom].nbRegion + 3
+                else:
+                    bonus = 1
+                    if r.tour == 1:
+                        bonus = 4
+                    clans[clan.nom] = {
+                        "couleur": couleur,
+                        "nbRegion": bonus
+                    }
+
+        logging.info(clans)
+        self.response.headers['Content-Type'] = 'application/json'
+        json.dump(clans,self.response.out)        
+
 """Recupere la liste des combats ou le joueur courant a participe"""
 class getMyWarResult(webapp2.RequestHandler):
     def get(self):
@@ -830,6 +863,7 @@ class war(webapp2.RequestHandler):
 #############################################################################
 app = webapp2.WSGIApplication([
 ('/strasWar/setWarStart',setWarStart),
+('/strasWar/getHighScore', getHighScore),
 ('/strasWar/getMyWarResult', getMyWarResult),
 ('/strasWar/getWarResult', getWarResult),
 ('/strasWar/getUnites', getUnites),

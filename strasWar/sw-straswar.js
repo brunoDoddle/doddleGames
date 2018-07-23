@@ -26,6 +26,7 @@ var files = [
     'svg/back.svg',
     'svg/target.svg',
     'svg/off.svg',
+    'png/first.png',
     'png/sword.png',
     'png/army.png',
     'png/soldats.png',
@@ -37,4 +38,4 @@ var files = [
     "png/cycle.png"
 ];
 
-var sw = new clsServiceWorker("strasWar", "0.16", files);
+var sw = new clsServiceWorker("strasWar", "0.17", files);

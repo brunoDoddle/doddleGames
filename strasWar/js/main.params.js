@@ -271,7 +271,7 @@ DODDLE.strasWar = {
 };
 
 DODDLE.strasWar = {
-    version: "v1.9b",
+    version: "v1.2",
     test: false, // Fonctionnalités utiles pour tester
     default_color: "#333333",
     map: null,
@@ -296,6 +296,7 @@ DODDLE.strasWar = {
     bounds: {}, // Mais pourquoi ai-je besoin des bounds dans srasWAr ???
     position: {}, // Position récupéré du GPS pour positionner l'armée sur la région
     infoPos: "", // Texte de position sur la carte
+    towers: true, // On affiche ou pas les tours
     joueur: {
         uuid: 0,
         name: "",
