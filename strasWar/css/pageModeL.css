@@ -1,0 +1,375 @@
+@charset "UTF-8";
+/* http://red-team-design.developpez.com/tutoriels/css/donner-style-listes-deroulantes/ */
+/*/* https://www.w3schools.com/w3css/w3css_input.asp */
+/*======================== Le design général de la page ========================*/
+@font-face {
+  font-family: 'PressStart2P';
+  src: url("/fonts/PressStart2P.woff");
+  font-weight: normal;
+  font-style: normal; }
+html {
+  height: 100vh;
+  touch-action: none; }
+
+body {
+  margin: 0px;
+  font-family: 'PressStart2P', sans-serif;
+  font-size: 13px;
+  color: #3b495f;
+  min-height: 100%;
+  overflow: hidden;
+  line-height: 2em; }
+
+*:not(input):not(textarea):not(.copy) {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: transparent; }
+
+.header {
+  height: 5vh;
+  Display: inline-block;
+  Width: 100%;
+  line-height: 5vh;
+  white-space: nowrap; }
+
+.header_content {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+  background-color: #ad473c; }
+
+.header_icon {
+  margin: 4px 0px 0px 4px;
+  width: 1.5em;
+  height: 1.5em; }
+
+span#header_title {
+  padding: 0px;
+  margin: 0px;
+  padding-left: 5px;
+  font-size: 1.5em;
+  color: #FFFFFF; }
+
+h2.second_title {
+  border-top: 3px #9B372E solid;
+  font-size: 1.4em;
+  text-align: center;
+  color: #FFFFFF;
+  padding: 5px 0px 5px 0px;
+  margin: 0px;
+  background-color: #ad473c; }
+
+h2 {
+  font-size: 1.4em;
+  text-align: center;
+  color: #ad473c;
+  padding: 0px;
+  margin: 0px; }
+
+h3 {
+  padding: 0px;
+  margin: 0px; }
+
+.labelTitre {
+  display: block;
+  font-size: 1.1em;
+  text-align: left;
+  padding: 0px;
+  color: #9B372E;
+  margin: 15px 0px 5px 17px; }
+
+p {
+  color: black;
+  font-size: 1em; }
+
+#page {
+  height: 100%; }
+
+#container {
+  position: relative;
+  height: 95vh;
+  overflow: auto; }
+
+#errors {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 99%;
+  font-size: 1.2em; }
+
+div.error, div.warning, div.normal {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  padding: 2px;
+  color: #FFFFFF;
+  text-shadow: 0px 2px black;
+  z-index: 1; }
+
+div.error {
+  background-color: rgba(255, 24, 0, 0.8); }
+
+div.warning {
+  background-color: rgba(239, 135, 0, 0.8); }
+
+div.normal {
+  background-color: rgba(77, 180, 77, 0.8); }
+
+div#loading {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(255, 255, 255, 0);
+  text-align: center; }
+
+/*======================== la lightBox ========================*/
+div .lb {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(255, 255, 255, 0.4);
+  z-index: 19; }
+div .lbShow {
+  display: block; }
+div .lbHide {
+  display: none; }
+
+/*======================== les interfaces ========================*/
+.popUp {
+  width: 90%;
+  height: 90%;
+  transition: transform .5s;
+  -webkit-transition: transform 1s;
+  background-color: rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  padding: 5px; }
+
+/*Classes de centrages des éléments*/
+.c {
+  z-index: 20;
+  position: absolute;
+  margin-left: 50%;
+  transform: translate3d(-50%, 0px, 0px);
+  -webkit-transform: translate3d(-50%, 0px, 0px);
+  transition: transform .3s;
+  -webkit-transition: transform .3s; }
+
+/*Définition des horizontales en viewHeight*/
+.hc0 {
+  margin-top: 0vh; }
+
+.hc1 {
+  margin-top: 1vh; }
+
+.hc10 {
+  margin-top: 10vh; }
+
+.hc5 {
+  margin-top: 5vh; }
+
+.hc30 {
+  margin-top: 30vh; }
+
+.hc50 {
+  margin-top: 50vh; }
+
+.hc60 {
+  margin-top: 60vh; }
+
+.hc70 {
+  margin-top: 70vh; }
+
+.hc80 {
+  margin-top: 80vh; }
+
+.hc95 {
+  margin-top: 95vh; }
+
+.vcOut {
+  transform: translate3d(-150vw, 0px, 0px);
+  transition-timing-function: ease-out;
+  -webkit-transform: translate3d(-150vw, 0px, 0px);
+  -webkit-transition-timing-function: ease-out; }
+
+.vcIn {
+  transition-timing-function: ease-in;
+  -webkit-transition-timing-function: ease-in; }
+
+.fixed {
+  position: fixed;
+  right: 5px;
+  bottom: 5px; }
+
+.rounded {
+  color: white;
+  background-color: #ad473c;
+  font-size: 1.5em;
+  border-radius: 60px;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  white-space: nowrap; }
+
+/*======================== les interfaces ========================*/
+.buttons {
+  display: flex;
+  padding: 5px;
+  justify-content: space-evenly; }
+
+.animate {
+  transition: all 0.1s;
+  -webkit-transition: all 0.1s; }
+
+.action-button {
+  margin: 5px 0px 5px 0px;
+  border: 0px;
+  font-size: 1.2em;
+  color: #FFFFFF;
+  text-decoration: none;
+  outline-style: none;
+  display: inline-block;
+  height: 50px;
+  font-family: 'PressStart2P', sans-serif; }
+
+.blue {
+  background-color: #3498DB;
+  border-bottom: 5px solid #196090;
+  text-shadow: 0px -5px #2383c4; }
+
+.red {
+  background-color: #C35246;
+  border-bottom: 5px solid #7b3028;
+  text-shadow: 0px -5px #a94237; }
+
+.green {
+  background-color: #82BF56;
+  border-bottom: 5px solid #517f30;
+  text-shadow: 0px -5px #6dab41; }
+
+.yellow {
+  background-color: #ffad2c;
+  border-bottom: 5px solid #c57800;
+  text-shadow: 0px -5px #ff9d03; }
+
+.action {
+  background-color: #FF312D;
+  border-bottom: 5px solid #c60400;
+  text-shadow: 0px -5px #ff0904; }
+
+.action-button:active {
+  transform: translate(0px, 5px);
+  -webkit-transform: translate(0px, 5px);
+  border-bottom: 1px solid; }
+
+.action-button:disabled {
+  color: #961F59;
+  background-color: #7C0B42;
+  border-bottom: 5px solid #5B062F;
+  text-shadow: 0px -2px #5B062F;
+  transform: translate(0px, 5px);
+  -webkit-transform: translate(0px, 5px);
+  border-bottom: 1px solid; }
+
+.cinquante {
+  width: 50%; }
+
+.quatrevingt {
+  width: 80%; }
+
+.cent {
+  width: 100%; }
+
+.myInput {
+  color: #ad473c;
+  background-color: inherit;
+  font-family: 'PressStart2P', sans-serif;
+  font-size: 1.3em;
+  outline: 0px;
+  border: 0px;
+  border-bottom: solid 3px #ad473c;
+  margin: 0px;
+  padding: 10px 0px 0px 0px;
+  width: 100%;
+  -webkit-transition: border 0.3s;
+  -webkit-transition: color 0.3s; }
+
+.myInput:focus {
+  color: #7A322C;
+  border-bottom: solid 3px #7A322C; }
+
+.myInput:disabled {
+  color: #E0AFAB; }
+
+::-webkit-input-placeholder {
+  color: #FF8484; }
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 50px white inset;
+  -webkit-text-fill-color: #333; }
+
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 50px white inset;
+  -webkit-text-fill-color: #333; }
+
+.error {
+  border-bottom: solid 3px red; }
+
+div.verticalAlign {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%; }
+
+div.verticalAlign_content {
+  color: #2a2a2a;
+  text-align: center;
+  margin: auto;
+  width: 90%; }
+
+div.centre {
+  text-align: center;
+  margin: auto;
+  width: 100%;
+  height: 100%; }
+
+a {
+  font-size: 1.5em;
+  color: #7A322C; }
+
+a.visited {
+  color: rgba(122, 50, 44, 0.52); }
+
+div.animatedMargin {
+  -webkit-transition: margin 0.5s; }
+
+ul.listUser {
+  display: block;
+  width: 100%;
+  height: 30vh;
+  overflow: auto;
+  font-size: 1em;
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+  text-align: center;
+  margin-before: 0em;
+  margin-after: 0em; }
+
+ul.listUser > li {
+  background-color: #9B372E;
+  border-radius: 50px;
+  color: white;
+  margin-top: 3px; }
+
+/*# sourceMappingURL=pageModeL.css.map */

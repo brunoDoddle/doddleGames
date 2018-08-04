@@ -40,7 +40,7 @@ class clsGuerriers:
     def _listeGuerriers(self):
         list = []
         for soldat in self.listeGuerriers:
-            if soldat.modele != 3:
+            if soldat.modele != 3 and soldat.modele != 11:
                 list.append(soldat)
         return list
 
@@ -48,7 +48,7 @@ class clsGuerriers:
     def _listeArchers(self):
         list = []
         for soldat in self.listeGuerriers:
-            if soldat.modele == 3:
+            if soldat.modele == 3 or soldat.modele == 11:
                 list.append(soldat)
         return list
 
@@ -74,7 +74,7 @@ class clsGuerriers:
         del(player)
         player = []
 
-        # veridier l'affectation des guerriers.. Il devrait rester a leur place dasn un combat
+        # veridier l'affectation des guerriers.. Il devrait rester a leur place dans un combat
         # multi round ( en fait le premier a perddu son ennemi) deccale le reste... hmmmm
         while encore:
             self._print("=====================================")
@@ -188,6 +188,7 @@ class clsGuerriers:
 class clsGuerrier:
     num = 0
     # 0 - soldat / 1 - piquier / 2 - cheval / 3 - Archer
+    # 4 - roi / 5-6-7-8-9 Mort / 10 - Paysan / 11 - Fronde
     modele = 0
     pv = 3  # 3 PV par defaut
     debug = False
@@ -240,6 +241,9 @@ class clsGuerrier:
             return True
 
     def prendsUneFleche(self):
+        self.pv = self.pv - 2
+
+    def prendsUnCaillou(self):
         self.pv = self.pv - 1
 
     def auTravail(self):
@@ -292,9 +296,12 @@ class clsCombat:
                     'pv1':self.guerrier1.pv,
                     'pv2':self.guerrier2.pv
                 })
-            else:
+            else: # Dans les archers on a les archer et les frondeurs
+                classe = 'T'
+                if self.guerrier1.modele == 11:
+                    classe = 'F'    # F comme fronde    
                 ordres.append({
-                    'ordre':'T',
+                    'ordre': classe,
                     'num1':self.guerrier1.num,
                     'num2':self.guerrier2.num,
                     'pv2':self.guerrier2.pv
@@ -360,6 +367,12 @@ class clsCombat:
                (self.guerrier1.modele == 1 and self.guerrier2.modele == 0)): # piquier < soldat
                 self.guerrier1.pv = 0 # on meurt
                 self.guerrier2.pv = self.guerrier2.pv -1 # et l'autre perd un point de vie
+            elif(self.guerrier1.modele == 10 ):  # paysan contre qqu'un
+                self.guerrier1.pv = 0 # on meurt
+                self.guerrier2.pv = self.guerrier2.pv -1 # et l'autre perd un point de vie
+            elif(self.guerrier2.modele == 10 ):  # qqu'un contre paysan 
+                self.guerrier1.pv = self.guerrier1.pv -1 # et l'autre perd un point de vie
+                self.guerrier2.pv = 0 # on meurt
 
             # Combat fini on libere si y'a des morts, d'ailleurs on libère tous le monde
             if self.guerrier2.pv <= 0 :
@@ -371,10 +384,12 @@ class clsCombat:
                 self.guerrier2.libereDelivre()
                 self.fini = True
         else:
-            self.guerrier2.prendsUneFleche()
+            if self.guerrier1.modele == 11: # Marche ça ??
+                self.guerrier2.prendsUnCaillou()
+            else:
+                self.guerrier2.prendsUneFleche()
             self.guerrier2.libereDelivre()
             self.fini = True
-
 
     def longueur(self,autreGuerrier):
         self.distance = sqrt((self.guerrier1.position["lat"] - autreGuerrier.position["lat"])**2 + (self.guerrier1.position["lng"] - autreGuerrier.position["lng"])**2)

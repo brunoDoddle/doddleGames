@@ -1,0 +1,24 @@
+<div class="topAlign">
+    <div class="verticalAlign_content animatedMargin">
+		<div>Liste des événements</div>
+		<div>
+		{% for turn in turns %}
+			{{ turn.num }} <br/>
+
+			{% for event in turn.events %}
+				<a onclick="DODDLE.strasWar.pilotage('playWar', '{{ event.uuid }}');">
+				{% if event.type = 'revolt'%}
+					{{ event.type}} - {{event.perdant}} perd {{event.zone}}
+				{% else %}
+					{% if event.perdant = ''%}
+						{{ event.type}} - {{event.gagnant}} conquiert {{event.zone}} 
+					{% else %}
+						{{ event.type}} - {{event.perdant}} perd {{event.zone}} contre {{event.gagnant}}
+					{% endif %}
+				{% endif %}
+				</a>
+		    {% endfor %}	
+	    {% endfor %}	
+		</div>
+	</div>
+</div>

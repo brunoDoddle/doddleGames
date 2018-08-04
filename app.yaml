@@ -102,6 +102,7 @@ handlers:
   static_dir: strasWar/css
 
 - url: /strasWar/png
+  application_readable: true
   static_dir: strasWar/png
 
 - url: /strasWar/svg
@@ -199,3 +200,6 @@ libraries:
 
 - name: webapp2
   version: "2.5.2"
+
+- name: PIL
+  version: latest  

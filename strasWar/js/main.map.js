@@ -8,81 +8,91 @@
 //*********************************************
 DODDLE.strasWar.listOfWar = function () {
     DODDLE.strasWar.page.needGoBack("DODDLE.strasWar.pilotage('main');");
-    var _div, _titre, _liste;
+    // var _div, _titre, _liste;
 
-    // **************************************
-    // ** Fonctions internes à la page
-    // **************************************
-    function afficheListeResultWar(data) {
-        var _liste, attributs = {},
-            listeLien = [];
-        var liste = localStorage.getItem("visitedLink");
-        if (liste !== null) listeLien = liste.split("|");
+    // // **************************************
+    // // ** Fonctions internes à la page
+    // // **************************************
+    // function afficheListeResultWar(data) {
+    //     var _liste, attributs = {},
+    //         listeLien = [];
+    //     var liste = localStorage.getItem("visitedLink");
+    //     if (liste !== null) listeLien = liste.split("|");
 
-        _liste = document.getElementById("list");
+    //     _liste = document.getElementById("list");
 
-        for (var n in data) {
-            if (listeLien.indexOf(data[n].uuid) != -1)
-                attributs = {
-                    "onclick": "DODDLE.strasWar.listOfWarChoose('" + data[n].uuid + "');",
-                    "class": "visited"
-                };
-            else
-                attributs = {
-                    "onclick": "DODDLE.strasWar.listOfWarChoose('" + data[n].uuid + "');"
-                };
-            _liste.appendChild(DODDLE.strasWar.page.addLink("jour " + data[n].tour + ", " + data[n].zone, attributs));
-        }
-    }
+    //     for (var n in data) {
+    //         if (listeLien.indexOf(data[n].uuid) != -1)
+    //             attributs = {
+    //                 "onclick": "DODDLE.strasWar.listOfWarChoose('" + data[n].uuid + "');",
+    //                 "class": "visited"
+    //             };
+    //         else
+    //             attributs = {
+    //                 "onclick": "DODDLE.strasWar.listOfWarChoose('" + data[n].uuid + "');"
+    //             };
+    //         _liste.appendChild(DODDLE.strasWar.page.addLink("jour " + data[n].tour + ", " + data[n].zone, attributs));
+    //     }
+    // }
 
-    // **************************************
-    // **************************************
+    // // **************************************
+    // // **************************************
 
-    _div = document.createElement("div");
-    _div.setAttribute("class", "verticalAlign");
+    // _div = document.createElement("div");
+    // _div.setAttribute("class", "verticalAlign");
 
-    _titre = document.createElement("h2");
-    _titre.innerHTML = "Liste des guerres";
-    _div.appendChild(_titre);
+    // _titre = document.createElement("h2");
+    // _titre.innerHTML = "Liste des guerres";
+    // _div.appendChild(_titre);
 
-    _liste = document.createElement("div");
-    _liste.setAttribute("class", "centre");
-    _liste.setAttribute("id", "list");
-    _div.appendChild(_liste);
+    // _liste = document.createElement("div");
+    // _liste.setAttribute("class", "centre");
+    // _liste.setAttribute("id", "list");
+    // _div.appendChild(_liste);
 
-    DODDLE.strasWar.page.addToPage(_div);
+    // DODDLE.strasWar.page.addToPage(_div);
 
-    DODDLE.strasWar.page.callServer("getMyWarResult", {
-            userUuid: DODDLE.strasWar.joueur.uuid
-        })
-        .then(
-            function (data) {
-                if (data.etat == 'ko')
-                    DODDLE.strasWar.page.addWarningMessage(data.msg);
-                else {
-                    afficheListeResultWar(data);
-                }
-            }
-        ).catch(
-            function (error) {
-                DODDLE.strasWar.page.addErrorMessage("Problème lecture:" + error);
-            }
-        );
+
+    DODDLE.strasWar.page.callServer("getEvent",{
+        war: DODDLE.strasWar.war.id
+    }).then(function (html) {
+        DODDLE.strasWar.page.loadPage(html);
+    }).catch(function (error) {
+        DODDLE.strasWar.page.addErrorMessage("Page non trouvé !");
+    })
+
+    // DODDLE.strasWar.page.callServer("getMyWarResult", {
+    //         userUuid: DODDLE.strasWar.joueur.uuid
+    //     })
+    //     .then(
+    //         function (data) {
+    //             if (data.etat == 'ko')
+    //                 DODDLE.strasWar.page.addWarningMessage(data.msg);
+    //             else {
+    //                 afficheListeResultWar(data);
+    //             }
+    //         }
+    //     ).catch(
+    //         function (error) {
+    //             DODDLE.strasWar.page.addErrorMessage("Problème lecture:" + error);
+    //         }
+    //     );
 };
 
-DODDLE.strasWar.listOfWarChoose = function (uuid) {
-    var listeLien;
-    var liste = localStorage.getItem("visitedLink");
+//DODDLE.strasWar.listOfWarChoose = function (uuid) {
+//    var listeLien;
+//    var liste = localStorage.getItem("visitedLink");
+//
+//    if (liste !== null)
+//        listeLien = liste.split("|");
+//    else
+//        listeLien = [];
+//
+//    if (listeLien.indexOf(uuid) == -1) localStorage.setItem("visitedLink", liste + "|" + uuid);
+//
+//    DODDLE.strasWar.pilotage('playWar', uuid);
+//};
 
-    if (liste !== null)
-        listeLien = liste.split("|");
-    else
-        listeLien = [];
-
-    if (listeLien.indexOf(uuid) == -1) localStorage.setItem("visitedLink", liste + "|" + uuid);
-
-    DODDLE.strasWar.pilotage('playWar', uuid);
-};
 //*********************************************
 // Affiche Carte pour REJOUER UNE GUERRE
 //*********************************************
@@ -299,6 +309,18 @@ DODDLE.strasWar.playWar = function (uuid) {
                                 sequence.go = true;
                             }
                             break;
+                        case "F": // TOTEST
+                            marker = _this.searchUnitesByUUID(sequence.num1);
+                            marker2 = _this.searchUnitesByUUID(sequence.num2);
+                            if (marker !== null && marker2 !== null) {
+                                var fronde = new animFronde();
+                                fronde.show();
+                                anim.addAnim(fronde);
+                                var blood = new animBlood(marker2.position, DODDLE.strasWar.map);
+                                fronde.setChain(blood);
+                                anim.addAnim(blood);
+                                sequence.go = true;
+                            }
                         case "T":
                             marker = _this.searchUnitesByUUID(sequence.num1);
                             marker2 = _this.searchUnitesByUUID(sequence.num2);
@@ -1074,27 +1096,33 @@ DODDLE.strasWar.showHighscore = function(){
     _texte.innerHTML = "Le Maitre du monde est";
     _bYES = DODDLE.strasWar.page.createValidationButton("Ok", "DODDLE.strasWar.page.hidePopUp();");
 
-    //TODO: à terminer
-    // Appel serveur -> retour clan, couleur, nb region, nb tour
     //DODDLE.tools.giveMeColouredSprite("soldats", 45, 65, searchColor(_winnerClan), 4)
 
-    DODDLE.strasWar.page.callServer("getHighScore", {
+    DODDLE.strasWar.page.callServer("getHighScore",{
         war: DODDLE.strasWar.war.id
-    }).then(function(data){
-        Object.keys(data).forEach(nom => {
-             _texte.innerHTML += nom  + " " + data[nom].nbRegion + " " + data[nom].couleur
-        })
+    }).then(function (html) {
+        _texte.innerHTML = html;
+    }).catch(function (error) {
+        DODDLE.strasWar.page.addErrorMessage("Page non trouvé !");
     })
-    .catch(function(){
-        alert("planté!");
-    })
+
+    // DODDLE.strasWar.page.callServer("getHighScore", {
+    //     war: DODDLE.strasWar.war.id
+    // }).then(function(data){
+    //     Object.keys(data).forEach(nom => {
+    //          _texte.innerHTML += nom  + " " + data[nom].nbRegion + " " + data[nom].couleur
+    //     })
+    // })
+    // .catch(function(){
+    //     alert("planté!");
+    // })
 
     var _d = document.createElement("div");
     _d.setAttribute("class", "popUpBoutonBloc");
     _d1 = document.createElement("div");
     _d1.setAttribute("class", "centPourcent");
-    _d1.appendChild(_bYES);
-    _d.appendChild(_d1);
+    _d.appendChild(_bYES);
+    //_d.appendChild(_d1);
 
     DODDLE.strasWar.page.addPopUpContainer(_texte);
     DODDLE.strasWar.page.addPopUpContainer(_d);

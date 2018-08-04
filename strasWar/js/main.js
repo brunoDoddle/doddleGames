@@ -621,21 +621,22 @@ DODDLE.strasWar.mainHelp = function (data) {
 DODDLE.strasWar.login = function (data) {
     var _div, _div1, _titre, _par;
 
-    _div = document.createElement("div");
-    _div.setAttribute("class", "verticalAlign");
+     _div = document.createElement("div");
+     _div.setAttribute("class", "verticalAlign");
 
-    _div1 = document.createElement("div");
-    _div1.setAttribute("class", "verticalAlign_content animatedMargin");
-    _div.appendChild(_div1);
+     _div1 = document.createElement("div");
+     _div1.setAttribute("class", "verticalAlign_content animatedMargin");
+     _div.appendChild(_div1);
 
     DODDLE.strasWar.page.callServer("html/main.html").then(function (html) {
-        _div1.innerHTML = html;
+        //_div1.innerHTML = html;
         // Les boutons de validation/annulation
-        DODDLE.strasWar.page.addPlusButton("Connexion", "DODDLE.strasWar.loginValidation()");
-        DODDLE.strasWar.page.addSimpleButton("Création", "DODDLE.strasWar.pilotage('chooseWar');");
+        // DODDLE.strasWar.page.addPlusButton("Connexion", "DODDLE.strasWar.loginValidation()");
+        // DODDLE.strasWar.page.addSimpleButton("Création", "DODDLE.strasWar.pilotage('chooseWar');");
 
-        DODDLE.strasWar.page.addToPage(_div);
-        _div.appendChild(DODDLE.strasWar.page.getButtons());
+        DODDLE.strasWar.page.loadPage(html);
+        // DODDLE.strasWar.page.addToPage(_div);
+        //_div.appendChild(DODDLE.strasWar.page.getButtons());
     }).catch(function (error) {
         DODDLE.strasWar.page.addErrorMessage("Page non trouvé !");
     })

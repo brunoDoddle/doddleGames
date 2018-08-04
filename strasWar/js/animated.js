@@ -165,3 +165,34 @@ function animFleche() {
         this.marker.setPosition(np);
     };
 }
+
+// = Classe d'animation des fronde
+// =========================================
+function animFronde() {
+    this.icon = {
+        url: DODDLE.fetch.getImageUrl("fronde"), // TODO: il faut une image fleche (attention 2 ref à modifier)
+        scaledSize: new google.maps.Size(30, 30),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(15, 15)
+    };
+
+    myAnim.call(this, undefined, this.icon); // On 'dérive' 
+    this.velX = 0;
+    this.velY = 0;
+    this.distance = 0;
+    this.positionDepart = {};
+    this.positionCourante = {};
+
+    this._play = function () {
+        this.positionCourante.x -= this.velX * 30;
+        this.positionCourante.y -= this.velY * 30;
+
+        var np = DODDLE.tools.pixelToLatLng(this.positionCourante, this.map);
+
+        var distanceParcouru = Math.sqrt(Math.pow(this.positionDepart.x - this.positionCourante.x, 2) + Math.pow(this.positionDepart.y - this.positionCourante.y, 2));
+        if (distanceParcouru >= this.distance) {
+            this.end();
+        }
+        this.marker.setPosition(np);
+    };
+}

@@ -15,6 +15,12 @@ indexes:
   properties:
   - name: nom
 
+- kind: dbEventResult
+  ancestor: yes
+  properties:
+  - name: tour
+    direction: desc
+
 - kind: dbScorer
   ancestor: yes
   properties:

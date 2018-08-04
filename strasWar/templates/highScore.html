@@ -1,0 +1,8 @@
+<div>
+	<h1>Clans</h1>
+	{% for clans in clans %}
+	<ul class="high">
+		<li>{{ clans.nom }} - {{ clans.nbRegion }} <img src="data:image/png;base64, {{clans.img}}"/></li>
+	</ul>
+    {% endfor %}	
+</div>

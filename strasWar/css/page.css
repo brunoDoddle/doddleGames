@@ -47,6 +47,14 @@ ul.help > li {
     color: #141d65;
 }
 
+ul.high {
+    list-style-type: none;
+}
+
+ul.high > li {
+    text-align: left;
+    color: #FFFFFF;
+}
 /* Les petits picto qui représente le nombre d'armée restant à poser*/
 
 .army {
@@ -178,6 +186,7 @@ ul.help > li {
 .popUpBoutonBloc {
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
     height: 10%;
     width: 100%;
 }

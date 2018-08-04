@@ -241,7 +241,7 @@ DODDLE.editor.sauveZones = function () {
         _nom, _clan, _tour;
     var started = document.querySelector("#started");
 
-    // Sauvegarde etat de la wr
+    // Sauvegarde etat de la war
     DODDLE.editor.page.callServer("setWarStart", {
         uuid: DODDLE.editor.war.uuid,
         started: started.checked ? true : false
@@ -255,18 +255,27 @@ DODDLE.editor.sauveZones = function () {
         _clan = document.getElementById("clan_" + DODDLE.editor.zones[z].uuid);
         _tour = document.getElementById("tour_" + DODDLE.editor.zones[z].uuid);
         // Et on fabrique l'objet
+        // On y remplis sa géographie...
+        var g = [];
+        var bounds = new google.maps.LatLngBounds();
+
+        for (var m in DODDLE.editor.zones[z].markers) 
+        {
+            g.push(DODDLE.editor.zones[z].markers[m].position);
+            bounds.extend(DODDLE.editor.zones[z].markers[m].position);
+        }
+
         _data.push({
             uuid: DODDLE.editor.zones[z].uuid,
             nom: _nom.value,
-            geographie: [], // Remplis plus bas
+            geographie: g,
+            center: bounds.getBoundsCenter(),
             voisins: DODDLE.editor.zones[z].voisins,
             clan: _clan.value,
             tour: _tour.checked ? 1 : 0
         });
-
-        // On y remplis sa géographie...
-        for (var m in DODDLE.editor.zones[z].markers) _data[_data.length - 1].geographie.push(DODDLE.editor.zones[z].markers[m].position);
     }
+
 
     DODDLE.editor.page.callServerPost("setZones", {
         war: DODDLE.editor.war,
